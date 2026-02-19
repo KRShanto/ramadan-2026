@@ -1,7 +1,6 @@
 "use client";
 
-import { ramadanPrayerTimes } from "@/lib/prayer-data";
-import { BottomNavigation } from "@/components/bottom-navigation";
+import { getTodayPrayerTimes } from "@/lib/prayer-data";
 import { useEffect, useState } from "react";
 import { divisions } from "@/lib/divisions";
 
@@ -12,31 +11,32 @@ interface PrayerTime {
 }
 
 export default function PrayersPage() {
-  const [currentDay, setCurrentDay] = useState<number>(1);
   const [selectedCity, setSelectedCity] = useState(divisions[0]);
+  const [todayPrayers, setTodayPrayers] = useState(
+    getTodayPrayerTimes(divisions[0].value),
+  );
 
   useEffect(() => {
     // Check for saved city in localStorage for footer consistency
     const savedCityValue = localStorage.getItem("selectedCity");
     if (savedCityValue) {
       const city = divisions.find((d) => d.value === savedCityValue);
-      if (city) setSelectedCity(city);
+      if (city) {
+        setSelectedCity(city);
+        // Important: Update prayers to match saved city immediately on mount if possible
+        const prayers = getTodayPrayerTimes(city.value);
+        setTodayPrayers(prayers);
+      }
     }
 
-    const today = new Date();
-    const ramadanStart = new Date(2024, 2, 12);
-    const ramadanEnd = new Date(2024, 3, 11);
-
-    if (today >= ramadanStart && today <= ramadanEnd) {
-      const dayNumber =
-        Math.floor(
-          (today.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24),
-        ) + 1;
-      setCurrentDay(dayNumber);
-    }
+    // Also listen for changes in other details if needed, but here simple load is fine.
   }, []);
 
-  const todayPrayers = ramadanPrayerTimes.find((p) => p.day === currentDay);
+  // Update prayers when selectedCity changes (if controlled elsewhere or local state updates)
+  useEffect(() => {
+    const prayers = getTodayPrayerTimes(selectedCity.value);
+    setTodayPrayers(prayers);
+  }, [selectedCity]);
 
   if (!todayPrayers) {
     return (
