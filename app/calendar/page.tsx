@@ -23,6 +23,23 @@ export default function CalendarPage() {
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
   const { selectedCity } = useCityStore();
 
+  // Helper to convert 24h string to 12h bn-BD string (e.g. "18:00" -> "৬:০০")
+  const formatTime12h = (time24: string) => {
+    if (!time24) return "";
+    const [hours24, minutes] = time24.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours24, minutes);
+    return date
+      .toLocaleTimeString("bn-BD", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      })
+      .replace("AM", "")
+      .replace("PM", "")
+      .trim(); // Optional: remove AM/PM if standard short format is preferred
+  };
+
   // Fetch JSON data
   useEffect(() => {
     async function fetchData() {
@@ -125,7 +142,7 @@ export default function CalendarPage() {
                       সেহরি শেষ
                     </p>
                     <p className="text-lg font-mono font-bold text-primary">
-                      {day.sehri_end}
+                      {formatTime12h(day.sehri_end)}
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
@@ -133,7 +150,7 @@ export default function CalendarPage() {
                       ইফতার
                     </p>
                     <p className="text-lg font-mono font-bold text-accent">
-                      {day.iftar}
+                      {formatTime12h(day.iftar)}
                     </p>
                   </div>
                 </div>
@@ -152,7 +169,7 @@ export default function CalendarPage() {
             এর জন্য প্রযোজ্য
           </p>
           <p className="text-[10px] text-muted-foreground/60 italic">
-            * সেহরি ও ইফতারের সময় ১-২ মিনিট কম-বেশি হতে পারে (সতর্কতামূলক)
+            * সেহরি ও ইফতারের সময় ১ মিনিট কম-বেশি হতে পারে (সতর্কতামূলক)
           </p>
         </div>
       </main>
