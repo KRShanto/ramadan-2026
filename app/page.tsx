@@ -13,8 +13,10 @@ export default function Home() {
   const [currentDate, setCurrentDate] = useState<string>("");
 
   useEffect(() => {
-    const prayers = getTodayPrayerTimes();
-    setTodayPrayers(prayers);
+    if (selectedCity) {
+      const prayers = getTodayPrayerTimes(selectedCity.value);
+      setTodayPrayers(prayers);
+    }
 
     const today = new Date();
     setCurrentDate(
@@ -25,7 +27,7 @@ export default function Home() {
         year: "numeric",
       }),
     );
-  }, []);
+  }, [selectedCity]);
 
   if (!todayPrayers) {
     return (
