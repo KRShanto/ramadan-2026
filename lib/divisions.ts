@@ -1,10 +1,10 @@
 export const divisions = [
-  { name: "ঢাকা", value: "Dhaka", offset: 0 },
-  { name: "চট্টগ্রাম", value: "Chattogram", offset: -5 },
-  { name: "খুলনা", value: "Khulna", offset: 5 },
-  { name: "রাজশাহী", value: "Rajshahi", offset: 7 },
-  { name: "বরিশাল", value: "Barishal", offset: 1 },
-  { name: "সিলেট", value: "Sylhet", offset: -6 },
-  { name: "রংপুর", value: "Rangpur", offset: 6 },
-  { name: "ময়মনসিংহ", value: "Mymensingh", offset: 0 },
+  { name: "ঢাকা", value: "Dhaka" },
+  { name: "চট্টগ্রাম", value: "Chattogram" },
+  { name: "খুলনা", value: "Khulna" },
+  { name: "রাজশাহী", value: "Rajshahi" },
+  { name: "বরিশাল", value: "Barishal" },
+  { name: "সিলেট", value: "Sylhet" },
+  { name: "রংপুর", value: "Rangpur" },
+  { name: "ময়মনসিংহ", value: "Mymensingh" },
 ];
