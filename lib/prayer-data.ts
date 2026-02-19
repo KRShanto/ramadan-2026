@@ -41,7 +41,7 @@ export interface DailyPrayerTimes {
   iftarTime: string;
 }
 
-const RAMADAN_START_DATE = new Date("2026-02-19");
+const RAMADAN_START_DATE = new Date("2026-02-19T00:00:00.000+06:00"); // Fixed timezone considering Bangladesh
 const RAMADAN_DAYS_COUNT = 30;
 
 // Helper to get prayer times for a specific date and city from the JSON
@@ -68,8 +68,7 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
   const currentDate = new Date(RAMADAN_START_DATE);
 
   for (let i = 1; i <= RAMADAN_DAYS_COUNT; i++) {
-    // Clone date to avoid mutation issues in loop if not careful,
-    // though distinct objects are best.
+    // Clone date to avoid mutation
     const dateObj = new Date(currentDate);
 
     // Fetch data for this gregorian date
@@ -88,7 +87,6 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
         iftarTime: dailyData.maghrib, // Iftar is Maghrib
       });
     } else {
-      // Fallback if data missing (shouldn't happen with valid JSON)
       schedule.push({
         day: i,
         date: dateObj,
@@ -113,26 +111,70 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
 export const ramadanPrayerTimes: DailyPrayerTimes[] =
   getPrayerTimesForCity("Dhaka");
 
+// Parse time string "HH:MM" to minutes from midnight
+function timeToMinutes(timeStr: string): number {
+  if (!timeStr) return 0;
+  const [hours, mins] = timeStr.split(":").map(Number);
+  return hours * 60 + mins;
+}
+
+// Get minutes from midnight for a Date object
+function dateToMinutes(date: Date): number {
+  return date.getHours() * 60 + date.getMinutes();
+}
+
 // Get today's prayer times for a specific city
 // Returns null if today is not within Ramadan (or just returns nearest day or default for safety)
 export function getTodayPrayerTimes(
   city: string = "Dhaka",
 ): DailyPrayerTimes | null {
-  const today = new Date();
+  const now = new Date();
 
-  // Calculate day of Ramadan
-  // Diff in time
-  const diffTime = today.getTime() - RAMADAN_START_DATE.getTime();
+  // Calculate difference in milliseconds from usage
+  const diffTime = now.getTime() - RAMADAN_START_DATE.getTime();
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const ramadanDay = diffDays + 1;
 
-  // Check if within Ramadan range
+  // Base Ramadan day (0-indexed offset from start)
+  let ramadanDayIndex = diffDays;
+
+  // We need to check if we passed Maghrib. If so, logic dictates next Islamic day starts?
+  // User Requirement: "after every magrib, it will increase [the day]"
+  // This implies if it's Ramadan Day 1, and now > Maghrib, show Ramadan Day 2?
+
+  // First, let's get data for the "current civil day" to check Maghrib time
+  // Note: we might be slightly off if user checks at 11PM (technically next day in calculation?)
+  // Let's rely on standard date calculation first.
+
+  const currentCivilDate = new Date(RAMADAN_START_DATE);
+  currentCivilDate.setDate(RAMADAN_START_DATE.getDate() + ramadanDayIndex);
+
+  const todaysData = getPrayerTimesForDate(city, now);
+
+  if (todaysData) {
+    const maghribMinutes = timeToMinutes(todaysData.maghrib);
+    const currentMinutes = dateToMinutes(now);
+
+    // If current time is after Maghrib, increment day
+    if (currentMinutes > maghribMinutes) {
+      ramadanDayIndex++;
+    }
+  }
+
+  const ramadanDay = ramadanDayIndex + 1; // 1-based index
+
+  // Check if calculated day is within valid range [1, 30]
   if (ramadanDay >= 1 && ramadanDay <= RAMADAN_DAYS_COUNT) {
-    const dailyData = getPrayerTimesForDate(city, today);
+    // Get the date corresponding to this Ramadan Day
+    const targetDate = new Date(RAMADAN_START_DATE);
+    targetDate.setDate(RAMADAN_START_DATE.getDate() + ramadanDayIndex);
+
+    // Fetch schedule for that specific date
+    const dailyData = getPrayerTimesForDate(city, targetDate);
+
     if (dailyData) {
       return {
-        day: ramadanDay,
-        date: today,
+        day: ramadanDay, // Dynamic day number
+        date: targetDate,
         sehriEnd: dailyData.sehri_end,
         fajr: dailyData.fajr,
         dhuhr: dailyData.dhuhr,
@@ -144,8 +186,8 @@ export function getTodayPrayerTimes(
     }
   }
 
-  // If not in Ramadan, maybe return the first day or null?
-  // Current app behavior: returns something to show.
-  // Let's return the first day of Ramadan (Dhaka or City) as a fallback preview
+  // Fallback: Return the first day's data if out of range,
+  // or maybe the last day if it's over?
+  // Let's stick to returning day 1 as a "Preview" if it's before, or Day 1 generally.
   return getPrayerTimesForCity(city)[0];
 }
