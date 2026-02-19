@@ -3,40 +3,67 @@
 import { getTodayPrayerTimes } from "@/lib/prayer-data";
 import { useEffect, useState } from "react";
 import { divisions } from "@/lib/divisions";
+import { useCityStore } from "@/store/city-store";
 
 interface PrayerTime {
   name: string;
   time: string;
   icon: string;
+  isNext?: boolean;
 }
 
+// Helper to convert time "HH:MM" to minutes for comparison
+const timeToMinutes = (timeStr: string) => {
+  const [h, m] = timeStr.split(":").map(Number);
+  return h * 60 + m;
+};
+
 export default function PrayersPage() {
-  const [selectedCity, setSelectedCity] = useState(divisions[0]);
+  const { selectedCity } = useCityStore();
   const [todayPrayers, setTodayPrayers] = useState(
-    getTodayPrayerTimes(divisions[0].value),
+    getTodayPrayerTimes(selectedCity.value),
   );
+  const [nextPrayerIndex, setNextPrayerIndex] = useState<number>(-1);
 
-  useEffect(() => {
-    // Check for saved city in localStorage for footer consistency
-    const savedCityValue = localStorage.getItem("selectedCity");
-    if (savedCityValue) {
-      const city = divisions.find((d) => d.value === savedCityValue);
-      if (city) {
-        setSelectedCity(city);
-        // Important: Update prayers to match saved city immediately on mount if possible
-        const prayers = getTodayPrayerTimes(city.value);
-        setTodayPrayers(prayers);
-      }
-    }
-
-    // Also listen for changes in other details if needed, but here simple load is fine.
-  }, []);
-
-  // Update prayers when selectedCity changes (if controlled elsewhere or local state updates)
+  // Sync with store
   useEffect(() => {
     const prayers = getTodayPrayerTimes(selectedCity.value);
     setTodayPrayers(prayers);
   }, [selectedCity]);
+
+  // Determine next prayer based on current time
+  useEffect(() => {
+    if (!todayPrayers) return;
+
+    const calculateNextPrayer = () => {
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      // Sequential list of prayer times for today
+      // Including Sehri end (Fajr start roughly) and Iftar (Maghrib)
+      // Standard 5 prayers: Fajr, Dhuhr, Asr, Maghrib, Isha
+      // Sehri end is before Fajr usually, or same time.
+      const times = [
+        { name: "ফজর", time: todayPrayers.fajr },
+        { name: "যোহর", time: todayPrayers.dhuhr },
+        { name: "আসর", time: todayPrayers.asr },
+        { name: "মাগরিব", time: todayPrayers.maghrib },
+        { name: "ইশা", time: todayPrayers.isha },
+      ];
+
+      // Find the first prayer that hasn't happened yet
+      const nextIndex = times.findIndex((t) => {
+        return timeToMinutes(t.time) > currentMinutes;
+      });
+
+      // If all passed (nextIndex -1), it means next is Fajr tomorrow (or next cycle)
+      setNextPrayerIndex(nextIndex);
+    };
+
+    calculateNextPrayer();
+    const interval = setInterval(calculateNextPrayer, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, [todayPrayers]);
 
   if (!todayPrayers) {
     return (
@@ -58,29 +85,40 @@ export default function PrayersPage() {
     <div className="min-h-screen bg-background text-foreground pb-32">
       {/* Prayer Times */}
       <main className="max-w-2xl mx-auto px-5 py-8 space-y-3">
-        {prayers.map((prayer) => (
-          <div
-            key={prayer.name}
-            className="premium-card p-4 flex items-center justify-between transition-all duration-300"
-          >
-            <div className="flex items-center gap-3">
-              <div className="text-3xl">{prayer.icon}</div>
-              <div>
-                <h2 className="text-base font-semibold text-foreground">
-                  {prayer.name}
-                </h2>
-                <p className="text-xs text-muted-foreground font-medium">
-                  দৈনিক নামাজ
-                </p>
+        {prayers.map((prayer, index) => {
+          const isNext = index === nextPrayerIndex;
+
+          return (
+            <div
+              key={prayer.name}
+              className={`premium-card p-4 flex items-center justify-between transition-all duration-300 ${isNext ? "ring-2 ring-primary border-primary/50 bg-primary/5" : ""}`}
+            >
+              <div className="flex items-center gap-3">
+                <div className="text-3xl">{prayer.icon}</div>
+                <div>
+                  <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+                    {prayer.name}
+                    {isNext && (
+                      <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">
+                        পরবর্তী
+                      </span>
+                    )}
+                  </h2>
+                  <p className="text-xs text-muted-foreground font-medium">
+                    দৈনিক নামাজ
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <div
+                  className={`text-xl font-mono font-bold ${isNext ? "text-primary" : "text-foreground"}`}
+                >
+                  {prayer.time}
+                </div>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-xl font-mono font-bold text-primary">
-                {prayer.time}
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
 
         {/* Special Times */}
         <div className="mt-8 space-y-3">
