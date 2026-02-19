@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BottomNavigation } from "@/components/bottom-navigation";
-import { divisions } from "@/lib/divisions";
+import { useCityStore } from "@/store/city-store";
 
 type CalendarDay = {
   day: number;
@@ -21,32 +21,9 @@ type CalendarData = {
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
-  const [cityVal, setCityVal] = useState("Dhaka");
-  const [cityNameBn, setCityNameBn] = useState("ঢাকা");
+  const { selectedCity } = useCityStore();
 
-  // 1. Poll for city changes in localStorage
-  useEffect(() => {
-    // Initial read
-    const saved = localStorage.getItem("selectedCity");
-    if (saved) {
-      setCityVal(saved);
-      const found = divisions.find((d) => d.value === saved);
-      if (found) setCityNameBn(found.name);
-    }
-
-    const interval = setInterval(() => {
-      const current = localStorage.getItem("selectedCity");
-      if (current && current !== cityVal) {
-        setCityVal(current);
-        const found = divisions.find((d) => d.value === current);
-        if (found) setCityNameBn(found.name);
-      }
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, [cityVal]);
-
-  // 2. Fetch JSON data
+  // Fetch JSON data
   useEffect(() => {
     async function fetchData() {
       try {
@@ -60,10 +37,10 @@ export default function CalendarPage() {
     fetchData();
   }, []);
 
-  // 3. Set current day for auto-scroll
+  // Set current day for auto-scroll
   useEffect(() => {
-    if (calendarData && calendarData.divisions[cityVal]) {
-      const cityDays = calendarData.divisions[cityVal];
+    if (calendarData && calendarData.divisions[selectedCity.value]) {
+      const cityDays = calendarData.divisions[selectedCity.value];
       const today = new Date();
       // Format today as YYYY-MM-DD to match JSON
       const yyyy = today.getFullYear();
@@ -83,9 +60,9 @@ export default function CalendarPage() {
         }, 500);
       }
     }
-  }, [calendarData, cityVal]);
+  }, [calendarData, selectedCity]);
 
-  if (!calendarData || !calendarData.divisions[cityVal]) {
+  if (!calendarData || !calendarData.divisions[selectedCity.value]) {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div>লোড হচ্ছে...</div>
@@ -93,7 +70,7 @@ export default function CalendarPage() {
     );
   }
 
-  const cityDays = calendarData.divisions[cityVal];
+  const cityDays = calendarData.divisions[selectedCity.value];
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
@@ -170,12 +147,12 @@ export default function CalendarPage() {
           <p className="text-xs text-muted-foreground leading-relaxed">
             সব সময়{" "}
             <span className="text-foreground font-semibold">
-              {cityNameBn}, বাংলাদেশ
+              {selectedCity.name}, বাংলাদেশ
             </span>{" "}
             এর জন্য প্রযোজ্য
           </p>
           <p className="text-[10px] text-muted-foreground/60 italic">
-            * সেহরি ও ইফতারের সময় ১ মিনিট কম-বেশি হতে পারে (সতর্কতামূলক)
+            * সেহরি ও ইফতারের সময় ১-২ মিনিট কম-বেশি হতে পারে (সতর্কতামূলক)
           </p>
         </div>
       </main>
