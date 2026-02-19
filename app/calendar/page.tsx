@@ -37,15 +37,15 @@ export default function CalendarPage() {
   useEffect(() => {
     if (calendarDays.length > 0) {
       const today = new Date();
-      // Format today as YYYY-MM-DD
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, "0");
-      const dd = String(today.getDate()).padStart(2, "0");
-      const todayStr = `${yyyy}-${mm}-${dd}`;
+      // Use local date string for comparison to avoid UTC shifts
+      // "en-CA" gives YYYY-MM-DD in local time
+      const todayStr = today.toLocaleDateString("en-CA");
 
-      const todayEntry = calendarDays.find(
-        (d) => d.date.toISOString().split("T")[0] === todayStr,
-      );
+      const todayEntry = calendarDays.find((d) => {
+        // Compare with local date string of the entry
+        // d.date is a Date object initialized to 00:00 local time
+        return d.date.toLocaleDateString("en-CA") === todayStr;
+      });
 
       if (todayEntry) {
         setCurrentDay(todayEntry.day);
