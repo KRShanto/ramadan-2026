@@ -1,214 +1,1705 @@
-[
-  {
-    "day": 1,
-    "gregorian": "2026-02-19",
-    "weekday_bn": "বৃহস্পতিবার",
-    "sehri_end": "05:12",
-    "iftar": "17:58"
-  },
-  {
-    "day": 2,
-    "gregorian": "2026-02-20",
-    "weekday_bn": "শুক্রবার",
-    "sehri_end": "05:11",
-    "iftar": "17:58"
-  },
-  {
-    "day": 3,
-    "gregorian": "2026-02-21",
-    "weekday_bn": "শনিবার",
-    "sehri_end": "05:11",
-    "iftar": "17:59"
-  },
-  {
-    "day": 4,
-    "gregorian": "2026-02-22",
-    "weekday_bn": "রবিবার",
-    "sehri_end": "05:10",
-    "iftar": "17:59"
-  },
-  {
-    "day": 5,
-    "gregorian": "2026-02-23",
-    "weekday_bn": "সোমবার",
-    "sehri_end": "05:09",
-    "iftar": "18:00"
-  },
-  {
-    "day": 6,
-    "gregorian": "2026-02-24",
-    "weekday_bn": "মঙ্গলবার",
-    "sehri_end": "05:08",
-    "iftar": "18:00"
-  },
-  {
-    "day": 7,
-    "gregorian": "2026-02-25",
-    "weekday_bn": "বুধবার",
-    "sehri_end": "05:08",
-    "iftar": "18:01"
-  },
-  {
-    "day": 8,
-    "gregorian": "2026-02-26",
-    "weekday_bn": "বৃহস্পতিবার",
-    "sehri_end": "05:07",
-    "iftar": "18:01"
-  },
-  {
-    "day": 9,
-    "gregorian": "2026-02-27",
-    "weekday_bn": "শুক্রবার",
-    "sehri_end": "05:06",
-    "iftar": "18:02"
-  },
-  {
-    "day": 10,
-    "gregorian": "2026-02-28",
-    "weekday_bn": "শনিবার",
-    "sehri_end": "05:05",
-    "iftar": "18:02"
-  },
-
-  {
-    "day": 11,
-    "gregorian": "2026-03-01",
-    "weekday_bn": "রবিবার",
-    "sehri_end": "05:05",
-    "iftar": "18:03"
-  },
-  {
-    "day": 12,
-    "gregorian": "2026-03-02",
-    "weekday_bn": "সোমবার",
-    "sehri_end": "05:04",
-    "iftar": "18:03"
-  },
-  {
-    "day": 13,
-    "gregorian": "2026-03-03",
-    "weekday_bn": "মঙ্গলবার",
-    "sehri_end": "05:03",
-    "iftar": "18:04"
-  },
-  {
-    "day": 14,
-    "gregorian": "2026-03-04",
-    "weekday_bn": "বুধবার",
-    "sehri_end": "05:02",
-    "iftar": "18:04"
-  },
-  {
-    "day": 15,
-    "gregorian": "2026-03-05",
-    "weekday_bn": "বৃহস্পতিবার",
-    "sehri_end": "05:01",
-    "iftar": "18:05"
-  },
-  {
-    "day": 16,
-    "gregorian": "2026-03-06",
-    "weekday_bn": "শুক্রবার",
-    "sehri_end": "05:00",
-    "iftar": "18:05"
-  },
-  {
-    "day": 17,
-    "gregorian": "2026-03-07",
-    "weekday_bn": "শনিবার",
-    "sehri_end": "04:59",
-    "iftar": "18:06"
-  },
-  {
-    "day": 18,
-    "gregorian": "2026-03-08",
-    "weekday_bn": "রবিবার",
-    "sehri_end": "04:58",
-    "iftar": "18:06"
-  },
-  {
-    "day": 19,
-    "gregorian": "2026-03-09",
-    "weekday_bn": "সোমবার",
-    "sehri_end": "04:57",
-    "iftar": "18:07"
-  },
-  {
-    "day": 20,
-    "gregorian": "2026-03-10",
-    "weekday_bn": "মঙ্গলবার",
-    "sehri_end": "04:57",
-    "iftar": "18:07"
-  },
-
-  {
-    "day": 21,
-    "gregorian": "2026-03-11",
-    "weekday_bn": "বুধবার",
-    "sehri_end": "04:56",
-    "iftar": "18:07"
-  },
-  {
-    "day": 22,
-    "gregorian": "2026-03-12",
-    "weekday_bn": "বৃহস্পতিবার",
-    "sehri_end": "04:55",
-    "iftar": "18:08"
-  },
-  {
-    "day": 23,
-    "gregorian": "2026-03-13",
-    "weekday_bn": "শুক্রবার",
-    "sehri_end": "04:54",
-    "iftar": "18:08"
-  },
-  {
-    "day": 24,
-    "gregorian": "2026-03-14",
-    "weekday_bn": "শনিবার",
-    "sehri_end": "04:53",
-    "iftar": "18:09"
-  },
-  {
-    "day": 25,
-    "gregorian": "2026-03-15",
-    "weekday_bn": "রবিবার",
-    "sehri_end": "04:52",
-    "iftar": "18:09"
-  },
-  {
-    "day": 26,
-    "gregorian": "2026-03-16",
-    "weekday_bn": "সোমবার",
-    "sehri_end": "04:51",
-    "iftar": "18:10"
-  },
-  {
-    "day": 27,
-    "gregorian": "2026-03-17",
-    "weekday_bn": "মঙ্গলবার",
-    "sehri_end": "04:50",
-    "iftar": "18:10"
-  },
-  {
-    "day": 28,
-    "gregorian": "2026-03-18",
-    "weekday_bn": "বুধবার",
-    "sehri_end": "04:49",
-    "iftar": "18:11"
-  },
-  {
-    "day": 29,
-    "gregorian": "2026-03-19",
-    "weekday_bn": "বৃহস্পতিবার",
-    "sehri_end": "04:48",
-    "iftar": "18:11"
-  },
-  {
-    "day": 30,
-    "gregorian": "2026-03-20",
-    "weekday_bn": "শুক্রবার",
-    "sehri_end": "04:47",
-    "iftar": "18:11"
+{
+  "source": "Hamariweb Ramadan Calendar 2026 PDFs (division-based)",
+  "website": "https://hamariweb.com/",
+  "year": 2026,
+  "country": "Bangladesh",
+  "note": "Each PDF includes: '1 minute Preventive difference in Sehri (-1 min) & Iftar (+1 min)'. Times stored exactly as shown (converted to 24h), without applying additional +/- adjustments.",
+  "divisions": {
+    "Dhaka": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:12",
+        "iftar": "17:57"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:11",
+        "iftar": "17:58"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:11",
+        "iftar": "17:58"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:10",
+        "iftar": "17:59"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:09",
+        "iftar": "17:59"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:08",
+        "iftar": "18:00"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:08",
+        "iftar": "18:00"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:07",
+        "iftar": "18:01"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:06",
+        "iftar": "18:01"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:02"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:04",
+        "iftar": "18:02"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:04",
+        "iftar": "18:03"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:03",
+        "iftar": "18:03"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:02",
+        "iftar": "18:04"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:01",
+        "iftar": "18:04"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:00",
+        "iftar": "18:04"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:59",
+        "iftar": "18:05"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:58",
+        "iftar": "18:05"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:57",
+        "iftar": "18:06"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:56",
+        "iftar": "18:06"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:56",
+        "iftar": "18:07"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:55",
+        "iftar": "18:07"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:54",
+        "iftar": "18:08"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:53",
+        "iftar": "18:08"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:52",
+        "iftar": "18:08"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:51",
+        "iftar": "18:09"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:50",
+        "iftar": "18:09"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:49",
+        "iftar": "18:10"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:48",
+        "iftar": "18:10"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:47",
+        "iftar": "18:10"
+      }
+    ],
+    "Chattogram": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:06",
+        "iftar": "17:53"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:05",
+        "iftar": "17:53"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:05",
+        "iftar": "17:54"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:04",
+        "iftar": "17:54"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:03",
+        "iftar": "17:55"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:02",
+        "iftar": "17:55"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:02",
+        "iftar": "17:56"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:01",
+        "iftar": "17:56"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:00",
+        "iftar": "17:56"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:00",
+        "iftar": "17:57"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:59",
+        "iftar": "17:57"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:58",
+        "iftar": "17:58"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:57",
+        "iftar": "17:58"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:56",
+        "iftar": "17:59"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:56",
+        "iftar": "17:59"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:55",
+        "iftar": "17:59"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:54",
+        "iftar": "18:00"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:53",
+        "iftar": "18:00"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:52",
+        "iftar": "18:01"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:51",
+        "iftar": "18:01"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:50",
+        "iftar": "18:01"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:49",
+        "iftar": "18:02"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:48",
+        "iftar": "18:02"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:48",
+        "iftar": "18:03"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:47",
+        "iftar": "18:03"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:46",
+        "iftar": "18:03"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:45",
+        "iftar": "18:04"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:44",
+        "iftar": "18:04"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:43",
+        "iftar": "18:04"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:42",
+        "iftar": "18:05"
+      }
+    ],
+    "Barishal": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:12",
+        "iftar": "17:58"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:11",
+        "iftar": "17:59"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:10",
+        "iftar": "17:59"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:10",
+        "iftar": "18:00"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:09",
+        "iftar": "18:00"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:08",
+        "iftar": "18:01"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:08",
+        "iftar": "18:01"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:07",
+        "iftar": "18:02"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:06",
+        "iftar": "18:02"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:02"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:03"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:04",
+        "iftar": "18:03"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:03",
+        "iftar": "18:04"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:02",
+        "iftar": "18:04"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:01",
+        "iftar": "18:05"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:00",
+        "iftar": "18:05"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:00",
+        "iftar": "18:06"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:59",
+        "iftar": "18:06"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:58",
+        "iftar": "18:06"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:57",
+        "iftar": "18:07"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:56",
+        "iftar": "18:07"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:55",
+        "iftar": "18:08"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:54",
+        "iftar": "18:08"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:53",
+        "iftar": "18:08"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:52",
+        "iftar": "18:09"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:51",
+        "iftar": "18:09"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:50",
+        "iftar": "18:09"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:49",
+        "iftar": "18:10"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:48",
+        "iftar": "18:10"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:47",
+        "iftar": "18:11"
+      }
+    ],
+    "Sylhet": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:06",
+        "iftar": "17:50"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:06",
+        "iftar": "17:51"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:05",
+        "iftar": "17:51"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:04",
+        "iftar": "17:52"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:04",
+        "iftar": "17:52"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:03",
+        "iftar": "17:53"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:02",
+        "iftar": "17:53"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:01",
+        "iftar": "17:54"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:00",
+        "iftar": "17:55"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:59",
+        "iftar": "17:55"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:59",
+        "iftar": "17:56"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:58",
+        "iftar": "17:56"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:57",
+        "iftar": "17:57"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:56",
+        "iftar": "17:57"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:55",
+        "iftar": "17:58"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:54",
+        "iftar": "17:58"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:53",
+        "iftar": "17:59"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:52",
+        "iftar": "17:59"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:51",
+        "iftar": "18:00"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:50",
+        "iftar": "18:00"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:49",
+        "iftar": "18:00"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:48",
+        "iftar": "18:01"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:47",
+        "iftar": "18:01"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:46",
+        "iftar": "18:02"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:45",
+        "iftar": "18:02"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:44",
+        "iftar": "18:03"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:43",
+        "iftar": "18:03"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:42",
+        "iftar": "18:04"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:41",
+        "iftar": "18:04"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:40",
+        "iftar": "18:05"
+      }
+    ],
+    "Khulna": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:15",
+        "iftar": "18:01"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:14",
+        "iftar": "18:02"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:14",
+        "iftar": "18:02"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:13",
+        "iftar": "18:03"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:12",
+        "iftar": "18:03"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:12",
+        "iftar": "18:04"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:11",
+        "iftar": "18:04"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:10",
+        "iftar": "18:05"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:09",
+        "iftar": "18:05"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:09",
+        "iftar": "18:06"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:08",
+        "iftar": "18:06"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:07",
+        "iftar": "18:07"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:06",
+        "iftar": "18:07"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:05",
+        "iftar": "18:07"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:08"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:04",
+        "iftar": "18:08"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:03",
+        "iftar": "18:09"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:02",
+        "iftar": "18:09"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:01",
+        "iftar": "18:10"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:00",
+        "iftar": "18:10"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:59",
+        "iftar": "18:10"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:58",
+        "iftar": "18:11"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:57",
+        "iftar": "18:11"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:56",
+        "iftar": "18:12"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:55",
+        "iftar": "18:12"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:54",
+        "iftar": "18:12"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:53",
+        "iftar": "18:13"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:53",
+        "iftar": "18:13"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:52",
+        "iftar": "18:13"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:51",
+        "iftar": "18:14"
+      }
+    ],
+    "Mymensingh": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:12",
+        "iftar": "17:56"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:12",
+        "iftar": "17:57"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:11",
+        "iftar": "17:57"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:10",
+        "iftar": "17:58"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:09",
+        "iftar": "17:58"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:09",
+        "iftar": "17:59"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:08",
+        "iftar": "17:59"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:07",
+        "iftar": "18:00"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:06",
+        "iftar": "18:01"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:01"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:04",
+        "iftar": "18:02"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:04",
+        "iftar": "18:02"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:03",
+        "iftar": "18:03"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:02",
+        "iftar": "18:03"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:01",
+        "iftar": "18:04"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:00",
+        "iftar": "18:04"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:59",
+        "iftar": "18:05"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:58",
+        "iftar": "18:05"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:57",
+        "iftar": "18:05"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:56",
+        "iftar": "18:06"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:55",
+        "iftar": "18:06"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:54",
+        "iftar": "18:07"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:53",
+        "iftar": "18:07"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:52",
+        "iftar": "18:08"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:51",
+        "iftar": "18:08"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:50",
+        "iftar": "18:09"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:49",
+        "iftar": "18:09"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:48",
+        "iftar": "18:10"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:47",
+        "iftar": "18:10"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:46",
+        "iftar": "18:10"
+      }
+    ],
+    "Rajshahi": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:19",
+        "iftar": "18:04"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:19",
+        "iftar": "18:04"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:18",
+        "iftar": "18:05"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:17",
+        "iftar": "18:05"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:16",
+        "iftar": "18:06"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:16",
+        "iftar": "18:06"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:15",
+        "iftar": "18:07"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:14",
+        "iftar": "18:07"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:13",
+        "iftar": "18:08"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:13",
+        "iftar": "18:08"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:12",
+        "iftar": "18:09"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:11",
+        "iftar": "18:09"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:10",
+        "iftar": "18:10"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:09",
+        "iftar": "18:10"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:08",
+        "iftar": "18:11"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:07",
+        "iftar": "18:11"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:06",
+        "iftar": "18:12"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:12"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:04",
+        "iftar": "18:13"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:04",
+        "iftar": "18:13"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:03",
+        "iftar": "18:14"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:02",
+        "iftar": "18:14"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:01",
+        "iftar": "18:15"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:00",
+        "iftar": "18:15"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:59",
+        "iftar": "18:16"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:58",
+        "iftar": "18:16"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:57",
+        "iftar": "18:16"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:55",
+        "iftar": "18:17"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:54",
+        "iftar": "18:17"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:53",
+        "iftar": "18:18"
+      }
+    ],
+    "Rangpur": [
+      {
+        "day": 1,
+        "gregorian": "2026-02-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:17",
+        "iftar": "18:00"
+      },
+      {
+        "day": 2,
+        "gregorian": "2026-02-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:16",
+        "iftar": "18:00"
+      },
+      {
+        "day": 3,
+        "gregorian": "2026-02-21",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:16",
+        "iftar": "18:01"
+      },
+      {
+        "day": 4,
+        "gregorian": "2026-02-22",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:15",
+        "iftar": "18:02"
+      },
+      {
+        "day": 5,
+        "gregorian": "2026-02-23",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:14",
+        "iftar": "18:02"
+      },
+      {
+        "day": 6,
+        "gregorian": "2026-02-24",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:13",
+        "iftar": "18:03"
+      },
+      {
+        "day": 7,
+        "gregorian": "2026-02-25",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:13",
+        "iftar": "18:03"
+      },
+      {
+        "day": 8,
+        "gregorian": "2026-02-26",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:12",
+        "iftar": "18:04"
+      },
+      {
+        "day": 9,
+        "gregorian": "2026-02-27",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:11",
+        "iftar": "18:04"
+      },
+      {
+        "day": 10,
+        "gregorian": "2026-02-28",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:10",
+        "iftar": "18:05"
+      },
+      {
+        "day": 11,
+        "gregorian": "2026-03-01",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:09",
+        "iftar": "18:06"
+      },
+      {
+        "day": 12,
+        "gregorian": "2026-03-02",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:08",
+        "iftar": "18:06"
+      },
+      {
+        "day": 13,
+        "gregorian": "2026-03-03",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:07",
+        "iftar": "18:07"
+      },
+      {
+        "day": 14,
+        "gregorian": "2026-03-04",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "05:06",
+        "iftar": "18:07"
+      },
+      {
+        "day": 15,
+        "gregorian": "2026-03-05",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "05:05",
+        "iftar": "18:08"
+      },
+      {
+        "day": 16,
+        "gregorian": "2026-03-06",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "05:04",
+        "iftar": "18:08"
+      },
+      {
+        "day": 17,
+        "gregorian": "2026-03-07",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "05:03",
+        "iftar": "18:09"
+      },
+      {
+        "day": 18,
+        "gregorian": "2026-03-08",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "05:03",
+        "iftar": "18:09"
+      },
+      {
+        "day": 19,
+        "gregorian": "2026-03-09",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "05:02",
+        "iftar": "18:10"
+      },
+      {
+        "day": 20,
+        "gregorian": "2026-03-10",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "05:01",
+        "iftar": "18:10"
+      },
+      {
+        "day": 21,
+        "gregorian": "2026-03-11",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:59",
+        "iftar": "18:11"
+      },
+      {
+        "day": 22,
+        "gregorian": "2026-03-12",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:58",
+        "iftar": "18:11"
+      },
+      {
+        "day": 23,
+        "gregorian": "2026-03-13",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:57",
+        "iftar": "18:12"
+      },
+      {
+        "day": 24,
+        "gregorian": "2026-03-14",
+        "weekday_bn": "শনিবার",
+        "sehri_end": "04:56",
+        "iftar": "18:12"
+      },
+      {
+        "day": 25,
+        "gregorian": "2026-03-15",
+        "weekday_bn": "রবিবার",
+        "sehri_end": "04:55",
+        "iftar": "18:13"
+      },
+      {
+        "day": 26,
+        "gregorian": "2026-03-16",
+        "weekday_bn": "সোমবার",
+        "sehri_end": "04:54",
+        "iftar": "18:13"
+      },
+      {
+        "day": 27,
+        "gregorian": "2026-03-17",
+        "weekday_bn": "মঙ্গলবার",
+        "sehri_end": "04:53",
+        "iftar": "18:14"
+      },
+      {
+        "day": 28,
+        "gregorian": "2026-03-18",
+        "weekday_bn": "বুধবার",
+        "sehri_end": "04:52",
+        "iftar": "18:14"
+      },
+      {
+        "day": 29,
+        "gregorian": "2026-03-19",
+        "weekday_bn": "বৃহস্পতিবার",
+        "sehri_end": "04:51",
+        "iftar": "18:15"
+      },
+      {
+        "day": 30,
+        "gregorian": "2026-03-20",
+        "weekday_bn": "শুক্রবার",
+        "sehri_end": "04:50",
+        "iftar": "18:15"
+      }
+    ]
   }
-]
+}
