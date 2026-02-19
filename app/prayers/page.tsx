@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { ramadanPrayerTimes } from '@/lib/prayer-data';
-import { BottomNavigation } from '@/components/bottom-navigation';
-import { useEffect, useState } from 'react';
+import { ramadanPrayerTimes } from "@/lib/prayer-data";
+import { BottomNavigation } from "@/components/bottom-navigation";
+import { useEffect, useState } from "react";
+import { divisions } from "@/lib/divisions";
 
 interface PrayerTime {
   name: string;
@@ -12,16 +13,25 @@ interface PrayerTime {
 
 export default function PrayersPage() {
   const [currentDay, setCurrentDay] = useState<number>(1);
+  const [selectedCity, setSelectedCity] = useState(divisions[0]);
 
   useEffect(() => {
+    // Check for saved city in localStorage for footer consistency
+    const savedCityValue = localStorage.getItem("selectedCity");
+    if (savedCityValue) {
+      const city = divisions.find((d) => d.value === savedCityValue);
+      if (city) setSelectedCity(city);
+    }
+
     const today = new Date();
     const ramadanStart = new Date(2024, 2, 12);
     const ramadanEnd = new Date(2024, 3, 11);
 
     if (today >= ramadanStart && today <= ramadanEnd) {
-      const dayNumber = Math.floor(
-        (today.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24)
-      ) + 1;
+      const dayNumber =
+        Math.floor(
+          (today.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24),
+        ) + 1;
       setCurrentDay(dayNumber);
     }
   }, []);
@@ -37,30 +47,15 @@ export default function PrayersPage() {
   }
 
   const prayers: PrayerTime[] = [
-    { name: 'ফজর', time: todayPrayers.fajr, icon: '🌙' },
-    { name: 'যোহর', time: todayPrayers.dhuhr, icon: '☀️' },
-    { name: 'আসর', time: todayPrayers.asr, icon: '🌤️' },
-    { name: 'মাগরিব', time: todayPrayers.maghrib, icon: '🌅' },
-    { name: 'ইশা', time: todayPrayers.isha, icon: '🌙' },
+    { name: "ফজর", time: todayPrayers.fajr, icon: "🌙" },
+    { name: "যোহর", time: todayPrayers.dhuhr, icon: "☀️" },
+    { name: "আসর", time: todayPrayers.asr, icon: "🌤️" },
+    { name: "মাগরিব", time: todayPrayers.maghrib, icon: "🌅" },
+    { name: "ইশা", time: todayPrayers.isha, icon: "🌙" },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
-      {/* Header */}
-      <header className="sticky top-0 bg-background/80 backdrop-blur-xl border-b border-border/30 z-40 safe-top">
-        <div className="max-w-2xl mx-auto px-5 py-4">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            ৫টি দৈনিক নামাজ
-          </h1>
-          <p className="text-xs text-muted-foreground font-medium mt-0.5">
-            দিন {currentDay} • {todayPrayers.date.toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-            })}
-          </p>
-        </div>
-      </header>
-
       {/* Prayer Times */}
       <main className="max-w-2xl mx-auto px-5 py-8 space-y-3">
         {prayers.map((prayer) => (
@@ -89,15 +84,21 @@ export default function PrayersPage() {
 
         {/* Special Times */}
         <div className="mt-8 space-y-3">
-          <h2 className="text-lg font-semibold text-foreground px-2">বিশেষ সময়</h2>
-          
+          <h2 className="text-lg font-semibold text-foreground px-2">
+            বিশেষ সময়
+          </h2>
+
           <div className="premium-card p-4 space-y-2 bg-gradient-to-br from-primary/10 to-transparent border-primary/30">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="text-2xl">🌙</div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">সেহরি শেষ</p>
-                  <p className="text-xs text-muted-foreground">রোজা শুরুর আগে খাওয়ার শেষ সময়</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    সেহরি শেষ
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    রোজা শুরুর আগে খাওয়ার শেষ সময়
+                  </p>
                 </div>
               </div>
               <div className="text-lg font-mono font-bold text-primary text-right">
@@ -111,8 +112,12 @@ export default function PrayersPage() {
               <div className="flex items-center gap-2">
                 <div className="text-2xl">🌅</div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">ইফতার সময়</p>
-                  <p className="text-xs text-muted-foreground">রোজা ভাঙ্গার সময়</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    ইফতার সময়
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    রোজা ভাঙ্গার সময়
+                  </p>
                 </div>
               </div>
               <div className="text-lg font-mono font-bold text-accent text-right">
@@ -125,16 +130,17 @@ export default function PrayersPage() {
         {/* Info Section */}
         <div className="mt-8 premium-card p-5 text-center space-y-1.5">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            সমস্ত সময় <span className="text-foreground font-semibold">ঢাকা, বাংলাদেশ</span> এর জন্য
+            সমস্ত সময়{" "}
+            <span className="text-foreground font-semibold">
+              {selectedCity.name}, বাংলাদেশ
+            </span>{" "}
+            এর জন্য
           </p>
           <p className="text-xs text-muted-foreground">
             স্থানের উপর ভিত্তি করে সময় পরিবর্তিত হতে পারে
           </p>
         </div>
       </main>
-
-      {/* Bottom Navigation */}
-      <BottomNavigation />
     </div>
   );
 }

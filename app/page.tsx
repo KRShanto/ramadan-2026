@@ -57,14 +57,6 @@ export default function Home() {
     );
   }, [selectedCity]);
 
-  const handleCityChange = (value: string) => {
-    const city = divisions.find((d) => d.value === value);
-    if (city) {
-      setSelectedCity(city);
-      localStorage.setItem("selectedCity", value);
-    }
-  };
-
   if (!todayPrayers) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -75,43 +67,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
-      {/* Header */}
-      <header className="sticky top-0 bg-background/80 backdrop-blur-xl border-b border-border/30 z-40 safe-top">
-        <div className="max-w-2xl mx-auto px-5 py-4 flex justify-between items-center gap-4">
-          <div className="space-y-0.5 min-w-0">
-            <h1 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent truncate">
-              রমজান
-            </h1>
-            <p className="text-xs text-muted-foreground font-medium truncate">
-              {selectedCity.name}, বাংলাদেশ
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Select value={selectedCity.value} onValueChange={handleCityChange}>
-              <SelectTrigger className="h-10 w-[120px] bg-card border-border rounded-lg text-base font-medium">
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} className="text-primary" />
-                  <SelectValue placeholder="শহর" />
-                </div>
-              </SelectTrigger>
-              <SelectContent>
-                {divisions.map((city) => (
-                  <SelectItem
-                    key={city.value}
-                    value={city.value}
-                    className="text-base"
-                  >
-                    {city.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <ThemeSwitcher />
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="max-w-2xl mx-auto px-5 py-8 space-y-6 pb-32">
         {/* Current Date and Day Number */}
@@ -160,9 +115,6 @@ export default function Home() {
           </p>
         </div>
       </main>
-
-      {/* Bottom Navigation */}
-      <BottomNavigation />
     </div>
   );
 }

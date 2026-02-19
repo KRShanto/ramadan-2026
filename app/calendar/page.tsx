@@ -24,20 +24,6 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
-      {/* Header */}
-      <header className="sticky top-0 bg-background/80 backdrop-blur-xl border-b border-border/30 z-40 safe-top">
-        <div className="max-w-2xl mx-auto px-5 py-4 flex justify-between items-center">
-          <div>
-            <h1 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-              রমজান ক্যালেন্ডার
-            </h1>
-            <p className="text-xs text-muted-foreground font-medium mt-0.5">
-              সবগুলো দিন (২০২৬)
-            </p>
-          </div>
-        </div>
-      </header>
-
       {/* Calendar Cards */}
       <main className="max-w-2xl mx-auto px-5 py-8">
         <div className="space-y-3">
@@ -121,9 +107,6 @@ export default function CalendarPage() {
           </p>
         </div>
       </main>
-
-      {/* Bottom Navigation */}
-      <BottomNavigation />
     </div>
   );
 }
