@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CountdownCard } from "@/components/countdown-card";
 import { getTodayPrayerTimes, DailyPrayerTimes } from "@/lib/prayer-data";
+import { getNextPrayerTime } from "@/lib/prayer-times";
 import { useCityStore } from "@/store/city-store";
 
 export default function Home() {
@@ -11,6 +12,10 @@ export default function Home() {
     null,
   );
   const [currentDate, setCurrentDate] = useState<string>("");
+  const [nextPrayer, setNextPrayer] = useState<{
+    name: string;
+    time: string;
+  } | null>(null);
 
   useEffect(() => {
     if (selectedCity) {
@@ -29,6 +34,20 @@ export default function Home() {
     );
   }, [selectedCity]);
 
+  // Update next prayer periodically
+  useEffect(() => {
+    if (!todayPrayers) return;
+
+    const updateNextPrayer = () => {
+      const next = getNextPrayerTime(todayPrayers);
+      setNextPrayer(next);
+    };
+
+    updateNextPrayer();
+    const interval = setInterval(updateNextPrayer, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, [todayPrayers]);
+
   if (!todayPrayers) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -39,6 +58,19 @@ export default function Home() {
 
   // Format the day number to Bengali
   const dayBn = new Intl.NumberFormat("bn-BD").format(todayPrayers.day);
+
+  // Bengali translation map
+  const prayerNamesBn: Record<string, string> = {
+    Fajr: "ফজর",
+    Dhuhr: "যোহর",
+    Asr: "আসর",
+    Maghrib: "মাগরিব",
+    Isha: "ইশা",
+  };
+
+  const nextPrayerNameBn = nextPrayer
+    ? prayerNamesBn[nextPrayer.name] || nextPrayer.name
+    : "";
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
@@ -64,11 +96,13 @@ export default function Home() {
             time={todayPrayers.iftarTime}
             icon="🌅"
           />
-          <CountdownCard
-            title="পরবর্তী নামাজ - আসর"
-            time={todayPrayers.asr}
-            icon="🕌"
-          />
+          {nextPrayer && (
+            <CountdownCard
+              title={`পরবর্তী নামাজ - ${nextPrayerNameBn}`}
+              time={nextPrayer.time}
+              icon="🕌"
+            />
+          )}
         </div>
 
         {/* Info Section */}

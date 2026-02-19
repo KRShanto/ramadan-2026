@@ -45,6 +45,17 @@ export interface DailyPrayerTimes {
 const RAMADAN_START_DATE = new Date("2026-02-19T00:00:00.000+06:00"); // Fixed timezone considering Bangladesh
 const RAMADAN_DAYS_COUNT = 30;
 
+// Helper to normalized 12h time string "04:30" to 24h string "16:30" if PM
+function to24Hour(time: string, isPM: boolean = false): string {
+  if (!time) return "00:00";
+  let [h, m] = time.split(":").map(Number);
+
+  if (isPM && h < 12) h += 12;
+  if (!isPM && h === 12) h = 0;
+
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+}
+
 // Helper to get prayer times for a specific date and city from the JSON
 function getPrayerTimesForDate(
   city: string,
@@ -76,15 +87,32 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
     const dailyData = getPrayerTimesForDate(city, dateObj);
 
     if (dailyData) {
+      // Normalize times to 24h format
+      const fajr24 = to24Hour(dailyData.fajr, false); // AM
+      const dhuhr24 = to24Hour(dailyData.dhuhr, true); // PM usually (12:xx or 1:xx) - Treating as PM context covers 12pm and 1pm. 11am would be wrong here?
+      // Wait, Dhuhr can be 11:55 AM. If treated as PM, 11 -> 23:55. Incorrect.
+      // Dhuhr logic refinements:
+      // If starts with 11, treat as AM. If 12 or 01.. etc, treat as PM.
+      // Let's make dhuhr logic inline below instead.
+
+      let dhuhrFinal = dailyData.dhuhr;
+      const [dH] = dailyData.dhuhr.split(":").map(Number);
+      if (dH === 12 || dH < 11) {
+        // 12:xx is PM. 1:xx is PM. 11:xx is AM.
+        dhuhrFinal = to24Hour(dailyData.dhuhr, true);
+      } else {
+        dhuhrFinal = to24Hour(dailyData.dhuhr, false); // 11:xx AM
+      }
+
       schedule.push({
         day: i,
         date: dateObj,
-        fajr: dailyData.fajr,
-        dhuhr: dailyData.dhuhr,
-        asr: dailyData.asr,
-        maghrib: dailyData.maghrib,
-        isha: dailyData.isha,
-        iftarTime: dailyData.maghrib, // Iftar is Maghrib
+        fajr: fajr24,
+        dhuhr: dhuhrFinal,
+        asr: to24Hour(dailyData.asr, true), // PM
+        maghrib: to24Hour(dailyData.maghrib, true), // PM
+        isha: to24Hour(dailyData.isha, true), // PM
+        iftarTime: to24Hour(dailyData.maghrib, true), // PM
       });
     } else {
       schedule.push({
@@ -118,6 +146,7 @@ export function formatTimeToBengali(time24: string): string {
   const [hours, minutes] = time24.split(":").map(Number);
   const date = set(new Date(), { hours, minutes });
 
+  // Format to 12h time in Bengali locale
   return format(date, "h:mm", { locale: bn });
 }
 
@@ -138,9 +167,9 @@ export function getTodayPrayerTimes(
   const todaysData = getPrayerTimesForDate(city, now);
 
   if (todaysData) {
-    const [maghribHours, maghribMinutes] = todaysData.maghrib
-      .split(":")
-      .map(Number);
+    // Normalizing maghrib to 24h for comparison
+    const maghrib24 = to24Hour(todaysData.maghrib, true);
+    const [maghribHours, maghribMinutes] = maghrib24.split(":").map(Number);
     const maghribTime = set(now, {
       hours: maghribHours,
       minutes: maghribMinutes,
@@ -164,15 +193,27 @@ export function getTodayPrayerTimes(
     const dailyData = getPrayerTimesForDate(city, targetDate);
 
     if (dailyData) {
+      // Normalize times exactly like above
+      const fajr24 = to24Hour(dailyData.fajr, false);
+
+      let dhuhrFinal = dailyData.dhuhr;
+      const [dH] = dailyData.dhuhr.split(":").map(Number);
+      // Dhuhr Logic: 11:xx is AM. 12:xx is PM. 01:xx is PM.
+      if (dH === 12 || dH < 11) {
+        dhuhrFinal = to24Hour(dailyData.dhuhr, true);
+      } else {
+        dhuhrFinal = to24Hour(dailyData.dhuhr, false);
+      }
+
       return {
-        day: ramadanDay, // Dynamic day number
+        day: ramadanDay,
         date: targetDate,
-        fajr: dailyData.fajr,
-        dhuhr: dailyData.dhuhr,
-        asr: dailyData.asr,
-        maghrib: dailyData.maghrib,
-        isha: dailyData.isha,
-        iftarTime: dailyData.maghrib,
+        fajr: fajr24,
+        dhuhr: dhuhrFinal,
+        asr: to24Hour(dailyData.asr, true),
+        maghrib: to24Hour(dailyData.maghrib, true),
+        isha: to24Hour(dailyData.isha, true),
+        iftarTime: to24Hour(dailyData.maghrib, true),
       };
     }
   }
