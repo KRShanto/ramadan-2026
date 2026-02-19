@@ -120,6 +120,25 @@ function dateToMinutes(date: Date): number {
   return date.getHours() * 60 + date.getMinutes();
 }
 
+/**
+ * Convert 24h string to 12h bn-BD string (e.g. "18:00" -> "৬:০০")
+ */
+export function formatTimeToBengali(time24: string): string {
+  if (!time24) return "";
+  const [hours24, minutes] = time24.split(":").map(Number);
+  const date = new Date();
+  date.setHours(hours24, minutes);
+  return date
+    .toLocaleTimeString("bn-BD", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    })
+    .replace("AM", "")
+    .replace("PM", "")
+    .trim();
+}
+
 // Get today's prayer times for a specific city
 // Returns null if today is not within Ramadan (or just returns nearest day or default for safety)
 export function getTodayPrayerTimes(
