@@ -8,6 +8,8 @@ import {
   DailyPrayerTimes,
   formatTimeToBengali,
 } from "@/lib/prayer-data";
+import { format, isSameDay } from "date-fns";
+import { bn } from "date-fns/locale";
 
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
@@ -24,12 +26,8 @@ export default function CalendarPage() {
   useEffect(() => {
     if (calendarDays.length > 0) {
       const today = new Date();
-      // Use local date string for comparison to avoid UTC shifts
-      const todayStr = today.toLocaleDateString("en-CA");
 
-      const todayEntry = calendarDays.find((d) => {
-        return d.date.toLocaleDateString("en-CA") === todayStr;
-      });
+      const todayEntry = calendarDays.find((d) => isSameDay(d.date, today));
 
       if (todayEntry) {
         setCurrentDay(todayEntry.day);
@@ -60,13 +58,8 @@ export default function CalendarPage() {
             const isToday = day.day === currentDay;
 
             // Format Date
-            const dateStr = day.date.toLocaleDateString("bn-BD", {
-              month: "short",
-              day: "numeric",
-            });
-            const weekdayBn = day.date.toLocaleDateString("bn-BD", {
-              weekday: "long",
-            });
+            const dateStr = format(day.date, "d MMM", { locale: bn });
+            const weekdayBn = format(day.date, "EEEE", { locale: bn });
 
             return (
               <div

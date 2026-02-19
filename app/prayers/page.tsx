@@ -2,8 +2,8 @@
 
 import { getTodayPrayerTimes, formatTimeToBengali } from "@/lib/prayer-data";
 import { useEffect, useState } from "react";
-import { divisions } from "@/lib/divisions";
 import { useCityStore } from "@/store/city-store";
+import { set, isAfter } from "date-fns";
 
 interface PrayerTime {
   name: string;
@@ -11,12 +11,6 @@ interface PrayerTime {
   icon: string;
   isNext?: boolean;
 }
-
-// Helper to convert time "HH:MM" to minutes for comparison
-const timeToMinutes = (timeStr: string) => {
-  const [h, m] = timeStr.split(":").map(Number);
-  return h * 60 + m;
-};
 
 export default function PrayersPage() {
   const { selectedCity } = useCityStore();
@@ -37,12 +31,7 @@ export default function PrayersPage() {
 
     const calculateNextPrayer = () => {
       const now = new Date();
-      const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-      // Sequential list of prayer times for today
-      // Including Sehri end (Fajr start roughly) and Iftar (Maghrib)
-      // Standard 5 prayers: Fajr, Dhuhr, Asr, Maghrib, Isha
-      // Sehri end is before Fajr usually, or same time.
       const times = [
         { name: "ফজর", time: todayPrayers.fajr },
         { name: "যোহর", time: todayPrayers.dhuhr },
@@ -53,10 +42,12 @@ export default function PrayersPage() {
 
       // Find the first prayer that hasn't happened yet
       const nextIndex = times.findIndex((t) => {
-        return timeToMinutes(t.time) > currentMinutes;
+        const [h, m] = t.time.split(":").map(Number);
+        const prayerTime = set(now, { hours: h, minutes: m, seconds: 0 });
+        // Return true if prayer time is AFTER current time
+        return isAfter(prayerTime, now);
       });
 
-      // If all passed (nextIndex -1), it means next is Fajr tomorrow (or next cycle)
       setNextPrayerIndex(nextIndex);
     };
 

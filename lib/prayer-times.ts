@@ -1,40 +1,39 @@
+import { differenceInSeconds, set, addDays, isAfter } from "date-fns";
+
 export interface TimeRemaining {
   hours: number;
   minutes: number;
   seconds: number;
 }
 
-export function timeStringToMinutes(timeStr: string): number {
-  const [hours, minutes] = timeStr.split(":").map(Number);
-  return hours * 60 + minutes;
-}
-
 export function getTimeUntilString(timeStr: string): TimeRemaining {
   const now = new Date();
-  const targetMinutes = timeStringToMinutes(timeStr);
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
-  const currentSeconds = now.getSeconds();
+  const [targetHours, targetMinutes] = timeStr.split(":").map(Number);
 
-  let diffMinutes = targetMinutes - currentMinutes;
-  let diffSeconds = 0 - currentSeconds;
+  let targetTime = set(now, {
+    hours: targetHours,
+    minutes: targetMinutes,
+    seconds: 0,
+    milliseconds: 0,
+  });
 
-  if (diffSeconds < 0) {
-    diffMinutes -= 1;
-    diffSeconds += 60;
+  // If target time has already passed today, calculate for tomorrow
+  if (isAfter(now, targetTime)) {
+    targetTime = addDays(targetTime, 1);
   }
 
-  if (diffMinutes < 0) {
-    // Time has passed for today, calculate for next day
-    diffMinutes += 24 * 60;
-  }
+  // Add seconds handling manually since intervalToDuration doesn't return seconds difference precisely if not exact
+  // A better approach with date-fns for exact countdown is to use differenceInSeconds and format it
+  const diffInSeconds = differenceInSeconds(targetTime, now);
 
-  const hours = Math.floor(diffMinutes / 60);
-  const minutes = diffMinutes % 60;
+  const hours = Math.floor(diffInSeconds / 3600);
+  const minutes = Math.floor((diffInSeconds % 3600) / 60);
+  const seconds = diffInSeconds % 60;
 
   return {
     hours,
     minutes,
-    seconds: diffSeconds,
+    seconds,
   };
 }
 
@@ -43,17 +42,14 @@ export function formatTimeRemaining(time: TimeRemaining): string {
   return `${pad(time.hours)}:${pad(time.minutes)}:${pad(time.seconds)}`;
 }
 
-export function getNextPrayerTime(
-  prayerTimes: {
-    fajr: string;
-    dhuhr: string;
-    asr: string;
-    maghrib: string;
-    isha: string;
-  }
-): { name: string; time: string } {
+export function getNextPrayerTime(prayerTimes: {
+  fajr: string;
+  dhuhr: string;
+  asr: string;
+  maghrib: string;
+  isha: string;
+}): { name: string; time: string } {
   const now = new Date();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
   const prayers = [
     { name: "Fajr", time: prayerTimes.fajr },
@@ -64,8 +60,10 @@ export function getNextPrayerTime(
   ];
 
   for (const prayer of prayers) {
-    const prayerMinutes = timeStringToMinutes(prayer.time);
-    if (prayerMinutes > currentMinutes) {
+    const [h, m] = prayer.time.split(":").map(Number);
+    const prayerTime = set(now, { hours: h, minutes: m, seconds: 0 });
+
+    if (isAfter(prayerTime, now)) {
       return prayer;
     }
   }

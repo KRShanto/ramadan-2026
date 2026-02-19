@@ -1,4 +1,6 @@
 import prayerDataRaw from "../public/prayer.json";
+import { differenceInDays, addDays, set, isAfter, format } from "date-fns";
+import { bn } from "date-fns/locale";
 
 // Raw types for public/prayer.json
 interface MonthlyPrayerData {
@@ -52,7 +54,7 @@ function getPrayerTimesForDate(
     prayerData.divisions[city] || prayerData.divisions["Dhaka"];
   if (!divisionData) return null;
 
-  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const month = format(date, "MM");
   const day = date.getDate();
 
   const monthData = divisionData.months[month];
@@ -64,7 +66,7 @@ function getPrayerTimesForDate(
 // Generate the 30-day Ramadan schedule for a given city
 export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
   const schedule: DailyPrayerTimes[] = [];
-  const currentDate = new Date(RAMADAN_START_DATE);
+  let currentDate = new Date(RAMADAN_START_DATE);
 
   for (let i = 1; i <= RAMADAN_DAYS_COUNT; i++) {
     // Clone date to avoid mutation
@@ -98,7 +100,7 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
     }
 
     // Increment date
-    currentDate.setDate(currentDate.getDate() + 1);
+    currentDate = addDays(currentDate, 1);
   }
 
   return schedule;
@@ -108,35 +110,15 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
 export const ramadanPrayerTimes: DailyPrayerTimes[] =
   getPrayerTimesForCity("Dhaka");
 
-// Parse time string "HH:MM" to minutes from midnight
-function timeToMinutes(timeStr: string): number {
-  if (!timeStr) return 0;
-  const [hours, mins] = timeStr.split(":").map(Number);
-  return hours * 60 + mins;
-}
-
-// Get minutes from midnight for a Date object
-function dateToMinutes(date: Date): number {
-  return date.getHours() * 60 + date.getMinutes();
-}
-
 /**
  * Convert 24h string to 12h bn-BD string (e.g. "18:00" -> "৬:০০")
  */
 export function formatTimeToBengali(time24: string): string {
   if (!time24) return "";
-  const [hours24, minutes] = time24.split(":").map(Number);
-  const date = new Date();
-  date.setHours(hours24, minutes);
-  return date
-    .toLocaleTimeString("bn-BD", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    })
-    .replace("AM", "")
-    .replace("PM", "")
-    .trim();
+  const [hours, minutes] = time24.split(":").map(Number);
+  const date = set(new Date(), { hours, minutes });
+
+  return format(date, "h:mm", { locale: bn });
 }
 
 // Get today's prayer times for a specific city
@@ -146,9 +128,8 @@ export function getTodayPrayerTimes(
 ): DailyPrayerTimes | null {
   const now = new Date();
 
-  // Calculate difference in milliseconds from usage
-  const diffTime = now.getTime() - RAMADAN_START_DATE.getTime();
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  // Calculate difference in days using date-fns
+  const diffDays = differenceInDays(now, RAMADAN_START_DATE);
 
   // Base Ramadan day (0-indexed offset from start)
   let ramadanDayIndex = diffDays;
@@ -157,11 +138,17 @@ export function getTodayPrayerTimes(
   const todaysData = getPrayerTimesForDate(city, now);
 
   if (todaysData) {
-    const maghribMinutes = timeToMinutes(todaysData.maghrib);
-    const currentMinutes = dateToMinutes(now);
+    const [maghribHours, maghribMinutes] = todaysData.maghrib
+      .split(":")
+      .map(Number);
+    const maghribTime = set(now, {
+      hours: maghribHours,
+      minutes: maghribMinutes,
+      seconds: 0,
+    });
 
     // If current time is after Maghrib, increment day
-    if (currentMinutes > maghribMinutes) {
+    if (isAfter(now, maghribTime)) {
       ramadanDayIndex++;
     }
   }
@@ -171,8 +158,7 @@ export function getTodayPrayerTimes(
   // Check if calculated day is within valid range [1, 30]
   if (ramadanDay >= 1 && ramadanDay <= RAMADAN_DAYS_COUNT) {
     // Get the date corresponding to this Ramadan Day
-    const targetDate = new Date(RAMADAN_START_DATE);
-    targetDate.setDate(RAMADAN_START_DATE.getDate() + ramadanDayIndex);
+    const targetDate = addDays(RAMADAN_START_DATE, ramadanDayIndex);
 
     // Fetch schedule for that specific date
     const dailyData = getPrayerTimesForDate(city, targetDate);
