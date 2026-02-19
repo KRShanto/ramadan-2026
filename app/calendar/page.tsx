@@ -3,29 +3,16 @@
 import { useEffect, useState } from "react";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { useCityStore } from "@/store/city-store";
-import { getPrayerTimesForCity, DailyPrayerTimes } from "@/lib/prayer-data";
+import {
+  getPrayerTimesForCity,
+  DailyPrayerTimes,
+  formatTimeToBengali,
+} from "@/lib/prayer-data";
 
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
   const [calendarDays, setCalendarDays] = useState<DailyPrayerTimes[]>([]);
   const { selectedCity } = useCityStore();
-
-  // Helper to convert 24h string to 12h bn-BD string (e.g. "18:00" -> "৬:০০")
-  const formatTime12h = (time24: string) => {
-    if (!time24) return "";
-    const [hours24, minutes] = time24.split(":").map(Number);
-    const date = new Date();
-    date.setHours(hours24, minutes);
-    return date
-      .toLocaleTimeString("bn-BD", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      })
-      .replace("AM", "")
-      .replace("PM", "")
-      .trim();
-  };
 
   // Load calendar data from shared utility
   useEffect(() => {
@@ -38,12 +25,9 @@ export default function CalendarPage() {
     if (calendarDays.length > 0) {
       const today = new Date();
       // Use local date string for comparison to avoid UTC shifts
-      // "en-CA" gives YYYY-MM-DD in local time
       const todayStr = today.toLocaleDateString("en-CA");
 
       const todayEntry = calendarDays.find((d) => {
-        // Compare with local date string of the entry
-        // d.date is a Date object initialized to 00:00 local time
         return d.date.toLocaleDateString("en-CA") === todayStr;
       });
 
@@ -123,7 +107,7 @@ export default function CalendarPage() {
                       সেহরি শেষ
                     </p>
                     <p className="text-lg font-mono font-bold text-primary">
-                      {formatTime12h(day.fajr)}
+                      {formatTimeToBengali(day.fajr)}
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
@@ -131,7 +115,7 @@ export default function CalendarPage() {
                       ইফতার
                     </p>
                     <p className="text-lg font-mono font-bold text-accent">
-                      {formatTime12h(day.iftarTime)}
+                      {formatTimeToBengali(day.iftarTime)}
                     </p>
                   </div>
                 </div>
