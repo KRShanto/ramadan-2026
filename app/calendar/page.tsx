@@ -1,22 +1,24 @@
-'use client';
+"use client";
 
-import { ramadanPrayerTimes } from '@/lib/prayer-data';
-import { BottomNavigation } from '@/components/bottom-navigation';
-import { useEffect, useState } from 'react';
+import { ramadanPrayerTimes, getTodayPrayerTimes } from "@/lib/prayer-data";
+import { BottomNavigation } from "@/components/bottom-navigation";
+import { useEffect, useState } from "react";
 
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
 
   useEffect(() => {
-    const today = new Date();
-    const ramadanStart = new Date(2024, 2, 12);
-    const ramadanEnd = new Date(2024, 3, 11);
+    const todayData = getTodayPrayerTimes();
+    if (todayData) {
+      setCurrentDay(todayData.day);
 
-    if (today >= ramadanStart && today <= ramadanEnd) {
-      const dayNumber = Math.floor(
-        (today.getTime() - ramadanStart.getTime()) / (1000 * 60 * 60 * 24)
-      ) + 1;
-      setCurrentDay(dayNumber);
+      // Auto-scroll to today after a short delay to ensure rendering is complete
+      setTimeout(() => {
+        const element = document.getElementById(`day-${todayData.day}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 500);
     }
   }, []);
 
@@ -24,11 +26,30 @@ export default function CalendarPage() {
     <div className="min-h-screen bg-background text-foreground pb-32">
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-xl border-b border-border/30 z-40 safe-top">
-        <div className="max-w-2xl mx-auto px-5 py-4">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            রমজান ক্যালেন্ডার
-          </h1>
-          <p className="text-xs text-muted-foreground font-medium mt-0.5">সমস্ত ৩০ দিন</p>
+        <div className="max-w-2xl mx-auto px-5 py-4 flex justify-between items-center">
+          <div>
+            <h1 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+              রমজান ক্যালেন্ডার
+            </h1>
+            <p className="text-xs text-muted-foreground font-medium mt-0.5">
+              সবগুলো দিন (২০২৬)
+            </p>
+          </div>
+          {currentDay > 0 && (
+            <button
+              onClick={() => {
+                const element = document.getElementById(`day-${currentDay}`);
+                if (element)
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+              }}
+              className="text-[10px] bg-primary/10 text-primary px-3 py-1.5 rounded-full font-bold uppercase tracking-wider border border-primary/20 hover:bg-primary/20 transition-colors"
+            >
+              আজকে যান
+            </button>
+          )}
         </div>
       </header>
 
@@ -37,38 +58,63 @@ export default function CalendarPage() {
         <div className="space-y-3">
           {ramadanPrayerTimes.map((day) => {
             const isToday = day.day === currentDay;
-            const dayName = day.date.toLocaleDateString('bn-BD', { weekday: 'short' });
-            const dateStr = day.date.toLocaleDateString('bn-BD', { month: 'short', day: 'numeric' });
-            
+            const dayName = day.date.toLocaleDateString("bn-BD", {
+              weekday: "short",
+            });
+            const dateStr = day.date.toLocaleDateString("bn-BD", {
+              month: "short",
+              day: "numeric",
+            });
+
             return (
               <div
                 key={day.day}
-                className={`premium-card p-5 space-y-3 transition-all duration-200 ${
-                  isToday ? 'border-primary/50 bg-primary/5' : ''
+                id={`day-${day.day}`}
+                className={`premium-card p-5 space-y-3 transition-all duration-300 ${
+                  isToday
+                    ? "border-primary/50 bg-primary/5 ring-1 ring-primary/20 shadow-lg shadow-primary/5"
+                    : ""
                 }`}
               >
                 {/* Day header */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className={`text-lg font-bold ${
-                      isToday ? 'text-primary' : 'text-foreground'
-                    }`}>
-                      দিন {String(day.day).padStart(2, '0')}
+                    <span
+                      className={`text-lg font-bold ${
+                        isToday ? "text-primary" : "text-foreground"
+                      }`}
+                    >
+                      রমজান {String(day.day).padStart(2, "0")}
                     </span>
-                    {isToday && <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" />}
+                    {isToday && (
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                      </span>
+                    )}
                   </div>
-                  <span className="text-xs text-muted-foreground font-medium">{dayName} • {dateStr}</span>
+                  <span className="text-xs text-muted-foreground font-medium uppercase">
+                    {dayName} • {dateStr}
+                  </span>
                 </div>
 
                 {/* Prayer times */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-secondary/30 rounded-lg p-3">
-                    <p className="text-xs text-muted-foreground mb-1">সেহরি শেষ</p>
-                    <p className="text-base font-bold text-primary">{day.sehriEnd}</p>
+                  <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1">
+                      সেহরি শেষ
+                    </p>
+                    <p className="text-lg font-mono font-bold text-primary">
+                      {day.sehriEnd}
+                    </p>
                   </div>
-                  <div className="bg-secondary/30 rounded-lg p-3">
-                    <p className="text-xs text-muted-foreground mb-1">ইফতার</p>
-                    <p className="text-base font-bold text-accent">{day.iftarTime}</p>
+                  <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1">
+                      ইফতার
+                    </p>
+                    <p className="text-lg font-mono font-bold text-accent">
+                      {day.iftarTime}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -77,12 +123,16 @@ export default function CalendarPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 premium-card p-5 text-center space-y-1.5">
+        <div className="mt-8 premium-card p-6 text-center space-y-2 border-dashed">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            সমস্ত সময় <span className="text-foreground font-semibold">ঢাকা, বাংলাদেশ</span> এর জন্য
+            সব সময়{" "}
+            <span className="text-foreground font-semibold">
+              ঢাকা, বাংলাদেশ
+            </span>{" "}
+            এর জন্য প্রযোজ্য
           </p>
-          <p className="text-xs text-muted-foreground">
-            স্থানের উপর ভিত্তি করে সময় পরিবর্তিত হতে পারে
+          <p className="text-[10px] text-muted-foreground/60 italic">
+            * আপনার লোকেশনের ওপর ভিত্তি করে সময় ১-২ মিনিট কম-বেশি হতে পারে
           </p>
         </div>
       </main>
