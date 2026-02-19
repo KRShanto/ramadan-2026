@@ -37,6 +37,9 @@ export default function Home() {
     );
   }
 
+  // Format the day number to Bengali
+  const dayBn = new Intl.NumberFormat("bn-BD").format(todayPrayers.day);
+
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
       {/* Main Content */}
@@ -47,14 +50,13 @@ export default function Home() {
             {currentDate}
           </p>
           <div className="space-y-0.5">
-            <p className="text-3xl font-bold text-primary">
-              দিন {todayPrayers.day}
-            </p>
+            <p className="text-3xl font-bold text-primary">দিন {dayBn}</p>
             <p className="text-sm text-muted-foreground font-medium">রমজানের</p>
           </div>
         </div>
 
         {/* Countdown Cards */}
+        {/* Pass ONLY English Format Times (e.g. "05:12") to CountdownCard logic props */}
         <div className="space-y-4">
           <CountdownCard title="সেহরি শেষ" time={todayPrayers.fajr} icon="🌙" />
           <CountdownCard
