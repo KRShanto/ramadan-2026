@@ -35,21 +35,6 @@ export default function CalendarPage() {
               সবগুলো দিন (২০২৬)
             </p>
           </div>
-          {currentDay > 0 && (
-            <button
-              onClick={() => {
-                const element = document.getElementById(`day-${currentDay}`);
-                if (element)
-                  element.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                  });
-              }}
-              className="text-[10px] bg-primary/10 text-primary px-3 py-1.5 rounded-full font-bold uppercase tracking-wider border border-primary/20 hover:bg-primary/20 transition-colors"
-            >
-              আজকে যান
-            </button>
-          )}
         </div>
       </header>
 
