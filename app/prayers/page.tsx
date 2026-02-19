@@ -126,7 +126,7 @@ export default function PrayersPage() {
             বিশেষ সময়
           </h2>
 
-          <div className="premium-card p-4 space-y-2 bg-gradient-to-br from-primary/10 to-transparent border-primary/30">
+          <div className="premium-card p-4 space-y-2 bg-linear-to-br from-primary/10 to-transparent border-primary/30">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="text-2xl">🌙</div>
@@ -140,12 +140,12 @@ export default function PrayersPage() {
                 </div>
               </div>
               <div className="text-lg font-mono font-bold text-primary text-right">
-                {todayPrayers.sehriEnd}
+                {todayPrayers.fajr}
               </div>
             </div>
           </div>
 
-          <div className="premium-card p-4 space-y-2 bg-gradient-to-br from-accent/10 to-transparent border-accent/30">
+          <div className="premium-card p-4 space-y-2 bg-linear-to-br from-accent/10 to-transparent border-accent/30">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="text-2xl">🌅</div>
