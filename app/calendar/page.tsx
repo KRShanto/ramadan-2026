@@ -1,38 +1,110 @@
 "use client";
 
-import { ramadanPrayerTimes, getTodayPrayerTimes } from "@/lib/prayer-data";
-import { BottomNavigation } from "@/components/bottom-navigation";
 import { useEffect, useState } from "react";
+import { BottomNavigation } from "@/components/bottom-navigation";
+import { divisions } from "@/lib/divisions";
+
+type CalendarDay = {
+  day: number;
+  gregorian: string;
+  weekday_bn: string;
+  sehri_end: string;
+  iftar: string;
+};
+
+type CalendarData = {
+  divisions: {
+    [key: string]: CalendarDay[];
+  };
+};
 
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
+  const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
+  const [cityVal, setCityVal] = useState("Dhaka");
+  const [cityNameBn, setCityNameBn] = useState("ঢাকা");
 
+  // 1. Poll for city changes in localStorage
   useEffect(() => {
-    const todayData = getTodayPrayerTimes();
-    if (todayData) {
-      setCurrentDay(todayData.day);
-
-      // Auto-scroll to today after a short delay to ensure rendering is complete
-      setTimeout(() => {
-        const element = document.getElementById(`day-${todayData.day}`);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      }, 500);
+    // Initial read
+    const saved = localStorage.getItem("selectedCity");
+    if (saved) {
+      setCityVal(saved);
+      const found = divisions.find((d) => d.value === saved);
+      if (found) setCityNameBn(found.name);
     }
+
+    const interval = setInterval(() => {
+      const current = localStorage.getItem("selectedCity");
+      if (current && current !== cityVal) {
+        setCityVal(current);
+        const found = divisions.find((d) => d.value === current);
+        if (found) setCityNameBn(found.name);
+      }
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [cityVal]);
+
+  // 2. Fetch JSON data
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("/ramadan-calendar.json");
+        const data = await res.json();
+        setCalendarData(data);
+      } catch (error) {
+        console.error("Failed to load calendar data", error);
+      }
+    }
+    fetchData();
   }, []);
+
+  // 3. Set current day for auto-scroll
+  useEffect(() => {
+    if (calendarData && calendarData.divisions[cityVal]) {
+      const cityDays = calendarData.divisions[cityVal];
+      const today = new Date();
+      // Format today as YYYY-MM-DD to match JSON
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const dd = String(today.getDate()).padStart(2, "0");
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+
+      const todayEntry = cityDays.find((d) => d.gregorian === todayStr);
+
+      if (todayEntry) {
+        setCurrentDay(todayEntry.day);
+        setTimeout(() => {
+          const element = document.getElementById(`day-${todayEntry.day}`);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 500);
+      }
+    }
+  }, [calendarData, cityVal]);
+
+  if (!calendarData || !calendarData.divisions[cityVal]) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div>লোড হচ্ছে...</div>
+      </div>
+    );
+  }
+
+  const cityDays = calendarData.divisions[cityVal];
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
       {/* Calendar Cards */}
       <main className="max-w-2xl mx-auto px-5 py-8">
         <div className="space-y-3">
-          {ramadanPrayerTimes.map((day) => {
+          {cityDays.map((day) => {
             const isToday = day.day === currentDay;
-            const dayName = day.date.toLocaleDateString("bn-BD", {
-              weekday: "short",
-            });
-            const dateStr = day.date.toLocaleDateString("bn-BD", {
+            // Parse date for display (e.g., "12 Mar")
+            const dateObj = new Date(day.gregorian);
+            const dateStr = dateObj.toLocaleDateString("bn-BD", {
               month: "short",
               day: "numeric",
             });
@@ -65,7 +137,7 @@ export default function CalendarPage() {
                     )}
                   </div>
                   <span className="text-xs text-muted-foreground font-medium uppercase">
-                    {dayName} • {dateStr}
+                    {day.weekday_bn} • {dateStr}
                   </span>
                 </div>
 
@@ -76,7 +148,7 @@ export default function CalendarPage() {
                       সেহরি শেষ
                     </p>
                     <p className="text-lg font-mono font-bold text-primary">
-                      {day.sehriEnd}
+                      {day.sehri_end}
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
@@ -84,7 +156,7 @@ export default function CalendarPage() {
                       ইফতার
                     </p>
                     <p className="text-lg font-mono font-bold text-accent">
-                      {day.iftarTime}
+                      {day.iftar}
                     </p>
                   </div>
                 </div>
@@ -98,15 +170,18 @@ export default function CalendarPage() {
           <p className="text-xs text-muted-foreground leading-relaxed">
             সব সময়{" "}
             <span className="text-foreground font-semibold">
-              ঢাকা, বাংলাদেশ
+              {cityNameBn}, বাংলাদেশ
             </span>{" "}
             এর জন্য প্রযোজ্য
           </p>
           <p className="text-[10px] text-muted-foreground/60 italic">
-            * আপনার লোকেশনের ওপর ভিত্তি করে সময় ১-২ মিনিট কম-বেশি হতে পারে
+            * সেহরি ও ইফতারের সময় ১ মিনিট কম-বেশি হতে পারে (সতর্কতামূলক)
           </p>
         </div>
       </main>
+
+      {/* Bottom Navigation */}
+      <BottomNavigation />
     </div>
   );
 }
