@@ -1,6 +1,6 @@
 "use client";
 
-import { getTodayPrayerTimes } from "@/lib/prayer-data";
+import { getTodayPrayerTimes, formatTimeToBengali } from "@/lib/prayer-data";
 import { useEffect, useState } from "react";
 import { divisions } from "@/lib/divisions";
 import { useCityStore } from "@/store/city-store";
@@ -74,12 +74,19 @@ export default function PrayersPage() {
   }
 
   const prayers: PrayerTime[] = [
-    { name: "ফজর", time: todayPrayers.fajr, icon: "🌙" },
-    { name: "যোহর", time: todayPrayers.dhuhr, icon: "☀️" },
-    { name: "আসর", time: todayPrayers.asr, icon: "🌤️" },
-    { name: "মাগরিব", time: todayPrayers.maghrib, icon: "🌅" },
-    { name: "ইশা", time: todayPrayers.isha, icon: "🌙" },
+    { name: "ফজর", time: formatTimeToBengali(todayPrayers.fajr), icon: "🌙" },
+    { name: "যোহর", time: formatTimeToBengali(todayPrayers.dhuhr), icon: "☀️" },
+    { name: "আসর", time: formatTimeToBengali(todayPrayers.asr), icon: "🌤️" },
+    {
+      name: "মাগরিব",
+      time: formatTimeToBengali(todayPrayers.maghrib),
+      icon: "🌅",
+    },
+    { name: "ইশা", time: formatTimeToBengali(todayPrayers.isha), icon: "🌙" },
   ];
+
+  const formattedSehriEnd = formatTimeToBengali(todayPrayers.fajr);
+  const formattedIftar = formatTimeToBengali(todayPrayers.iftarTime);
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
@@ -140,7 +147,7 @@ export default function PrayersPage() {
                 </div>
               </div>
               <div className="text-lg font-mono font-bold text-primary text-right">
-                {todayPrayers.fajr}
+                {formattedSehriEnd}
               </div>
             </div>
           </div>
@@ -159,7 +166,7 @@ export default function PrayersPage() {
                 </div>
               </div>
               <div className="text-lg font-mono font-bold text-accent text-right">
-                {todayPrayers.iftarTime}
+                {formattedIftar}
               </div>
             </div>
           </div>
