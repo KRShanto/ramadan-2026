@@ -1,4 +1,4 @@
-# Ramadan Calendar 2026 Bangladesh (PWA)
+# Ramadan Calendar 2026 Bangladesh
 
 ![Ramadan Calendar Bangladesh](docs/thumbnail.png)
 
