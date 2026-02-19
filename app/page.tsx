@@ -56,11 +56,7 @@ export default function Home() {
 
         {/* Countdown Cards */}
         <div className="space-y-4">
-          <CountdownCard
-            title="সেহরি শেষ"
-            time={todayPrayers.sehriEnd}
-            icon="🌙"
-          />
+          <CountdownCard title="সেহরি শেষ" time={todayPrayers.fajr} icon="🌙" />
           <CountdownCard
             title="ইফতার সময়"
             time={todayPrayers.iftarTime}

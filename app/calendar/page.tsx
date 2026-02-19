@@ -3,24 +3,11 @@
 import { useEffect, useState } from "react";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { useCityStore } from "@/store/city-store";
-
-type CalendarDay = {
-  day: number;
-  gregorian: string;
-  weekday_bn: string;
-  sehri_end: string;
-  iftar: string;
-};
-
-type CalendarData = {
-  divisions: {
-    [key: string]: CalendarDay[];
-  };
-};
+import { getPrayerTimesForCity, DailyPrayerTimes } from "@/lib/prayer-data";
 
 export default function CalendarPage() {
   const [currentDay, setCurrentDay] = useState<number>(0);
-  const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
+  const [calendarDays, setCalendarDays] = useState<DailyPrayerTimes[]>([]);
   const { selectedCity } = useCityStore();
 
   // Helper to convert 24h string to 12h bn-BD string (e.g. "18:00" -> "৬:০০")
@@ -37,35 +24,28 @@ export default function CalendarPage() {
       })
       .replace("AM", "")
       .replace("PM", "")
-      .trim(); // Optional: remove AM/PM if standard short format is preferred
+      .trim();
   };
 
-  // Fetch JSON data
+  // Load calendar data from shared utility
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("/ramadan-calendar.json");
-        const data = await res.json();
-        setCalendarData(data);
-      } catch (error) {
-        console.error("Failed to load calendar data", error);
-      }
-    }
-    fetchData();
-  }, []);
+    const days = getPrayerTimesForCity(selectedCity.value);
+    setCalendarDays(days);
+  }, [selectedCity]);
 
   // Set current day for auto-scroll
   useEffect(() => {
-    if (calendarData && calendarData.divisions[selectedCity.value]) {
-      const cityDays = calendarData.divisions[selectedCity.value];
+    if (calendarDays.length > 0) {
       const today = new Date();
-      // Format today as YYYY-MM-DD to match JSON
+      // Format today as YYYY-MM-DD
       const yyyy = today.getFullYear();
       const mm = String(today.getMonth() + 1).padStart(2, "0");
       const dd = String(today.getDate()).padStart(2, "0");
       const todayStr = `${yyyy}-${mm}-${dd}`;
 
-      const todayEntry = cityDays.find((d) => d.gregorian === todayStr);
+      const todayEntry = calendarDays.find(
+        (d) => d.date.toISOString().split("T")[0] === todayStr,
+      );
 
       if (todayEntry) {
         setCurrentDay(todayEntry.day);
@@ -77,9 +57,9 @@ export default function CalendarPage() {
         }, 500);
       }
     }
-  }, [calendarData, selectedCity]);
+  }, [calendarDays]);
 
-  if (!calendarData || !calendarData.divisions[selectedCity.value]) {
+  if (calendarDays.length === 0) {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div>লোড হচ্ছে...</div>
@@ -87,20 +67,21 @@ export default function CalendarPage() {
     );
   }
 
-  const cityDays = calendarData.divisions[selectedCity.value];
-
   return (
     <div className="min-h-screen bg-background text-foreground pb-32">
       {/* Calendar Cards */}
       <main className="max-w-2xl mx-auto px-5 py-8">
         <div className="space-y-3">
-          {cityDays.map((day) => {
+          {calendarDays.map((day) => {
             const isToday = day.day === currentDay;
-            // Parse date for display (e.g., "12 Mar")
-            const dateObj = new Date(day.gregorian);
-            const dateStr = dateObj.toLocaleDateString("bn-BD", {
+
+            // Format Date
+            const dateStr = day.date.toLocaleDateString("bn-BD", {
               month: "short",
               day: "numeric",
+            });
+            const weekdayBn = day.date.toLocaleDateString("bn-BD", {
+              weekday: "long",
             });
 
             return (
@@ -131,7 +112,7 @@ export default function CalendarPage() {
                     )}
                   </div>
                   <span className="text-xs text-muted-foreground font-medium uppercase">
-                    {day.weekday_bn} • {dateStr}
+                    {weekdayBn} • {dateStr}
                   </span>
                 </div>
 
@@ -142,7 +123,7 @@ export default function CalendarPage() {
                       সেহরি শেষ
                     </p>
                     <p className="text-lg font-mono font-bold text-primary">
-                      {formatTime12h(day.sehri_end)}
+                      {formatTime12h(day.fajr)}
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
@@ -150,7 +131,7 @@ export default function CalendarPage() {
                       ইফতার
                     </p>
                     <p className="text-lg font-mono font-bold text-accent">
-                      {formatTime12h(day.iftar)}
+                      {formatTime12h(day.iftarTime)}
                     </p>
                   </div>
                 </div>

@@ -32,7 +32,6 @@ const prayerData = prayerDataRaw as unknown as PrayerJsonData;
 export interface DailyPrayerTimes {
   day: number;
   date: Date;
-  sehriEnd: string;
   fajr: string;
   dhuhr: string;
   asr: string;
@@ -78,7 +77,6 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
       schedule.push({
         day: i,
         date: dateObj,
-        sehriEnd: dailyData.sehri_end,
         fajr: dailyData.fajr,
         dhuhr: dailyData.dhuhr,
         asr: dailyData.asr,
@@ -90,7 +88,6 @@ export function getPrayerTimesForCity(city: string): DailyPrayerTimes[] {
       schedule.push({
         day: i,
         date: dateObj,
-        sehriEnd: "00:00",
         fajr: "00:00",
         dhuhr: "00:00",
         asr: "00:00",
@@ -137,17 +134,7 @@ export function getTodayPrayerTimes(
   // Base Ramadan day (0-indexed offset from start)
   let ramadanDayIndex = diffDays;
 
-  // We need to check if we passed Maghrib. If so, logic dictates next Islamic day starts?
-  // User Requirement: "after every magrib, it will increase [the day]"
-  // This implies if it's Ramadan Day 1, and now > Maghrib, show Ramadan Day 2?
-
-  // First, let's get data for the "current civil day" to check Maghrib time
-  // Note: we might be slightly off if user checks at 11PM (technically next day in calculation?)
-  // Let's rely on standard date calculation first.
-
-  const currentCivilDate = new Date(RAMADAN_START_DATE);
-  currentCivilDate.setDate(RAMADAN_START_DATE.getDate() + ramadanDayIndex);
-
+  // Check Maghrib logic
   const todaysData = getPrayerTimesForDate(city, now);
 
   if (todaysData) {
@@ -175,7 +162,6 @@ export function getTodayPrayerTimes(
       return {
         day: ramadanDay, // Dynamic day number
         date: targetDate,
-        sehriEnd: dailyData.sehri_end,
         fajr: dailyData.fajr,
         dhuhr: dailyData.dhuhr,
         asr: dailyData.asr,
@@ -186,8 +172,6 @@ export function getTodayPrayerTimes(
     }
   }
 
-  // Fallback: Return the first day's data if out of range,
-  // or maybe the last day if it's over?
-  // Let's stick to returning day 1 as a "Preview" if it's before, or Day 1 generally.
+  // Fallback
   return getPrayerTimesForCity(city)[0];
 }
