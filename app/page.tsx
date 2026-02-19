@@ -1,46 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BottomNavigation } from "@/components/bottom-navigation";
 import { CountdownCard } from "@/components/countdown-card";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { getTodayPrayerTimes, DailyPrayerTimes } from "@/lib/prayer-data";
-import { MapPin } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-// City data with their offsets from Dhaka (minutes)
-const divisions = [
-  { name: "ঢাকা", value: "Dhaka", offset: 0 },
-  { name: "চট্টগ্রাম", value: "Chattogram", offset: -5 },
-  { name: "খুলনা", value: "Khulna", offset: 5 },
-  { name: "রাজশাহী", value: "Rajshahi", offset: 7 },
-  { name: "বরিশাল", value: "Barishal", offset: 1 },
-  { name: "সিলেট", value: "Sylhet", offset: -6 },
-  { name: "রংপুর", value: "Rangpur", offset: 6 },
-  { name: "ময়মনসিংহ", value: "Mymensingh", offset: 0 },
-];
+import { useCityStore } from "@/store/city-store";
 
 export default function Home() {
-  const [selectedCity, setSelectedCity] = useState(divisions[0]);
+  const { selectedCity } = useCityStore();
   const [todayPrayers, setTodayPrayers] = useState<DailyPrayerTimes | null>(
     null,
   );
   const [currentDate, setCurrentDate] = useState<string>("");
-
-  useEffect(() => {
-    // Check for saved city in localStorage
-    const savedCityValue = localStorage.getItem("selectedCity");
-    if (savedCityValue) {
-      const city = divisions.find((d) => d.value === savedCityValue);
-      if (city) setSelectedCity(city);
-    }
-  }, []);
 
   useEffect(() => {
     const prayers = getTodayPrayerTimes();
@@ -55,7 +25,7 @@ export default function Home() {
         year: "numeric",
       }),
     );
-  }, [selectedCity]);
+  }, []);
 
   if (!todayPrayers) {
     return (

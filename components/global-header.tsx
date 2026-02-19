@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { MapPin } from "lucide-react";
@@ -12,23 +11,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { divisions } from "@/lib/divisions";
+import { useCityStore } from "@/store/city-store";
 
 export function GlobalHeader() {
-  const [selectedCity, setSelectedCity] = useState(divisions[0]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("selectedCity");
-    if (saved) {
-      const city = divisions.find((d) => d.value === saved);
-      if (city) setSelectedCity(city);
-    }
-  }, []);
+  const { selectedCity, setSelectedCity } = useCityStore();
 
   const handleCityChange = (value: string) => {
     const city = divisions.find((d) => d.value === value);
     if (city) {
       setSelectedCity(city);
-      localStorage.setItem("selectedCity", value);
     }
   };
 
