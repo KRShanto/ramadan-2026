@@ -5,10 +5,11 @@ import { BottomNavigation } from "@/components/bottom-navigation";
 import { useCityStore } from "@/store/city-store";
 import {
   getPrayerTimesForCity,
+  getTodayPrayerTimes,
   DailyPrayerTimes,
   formatTimeToBengali,
 } from "@/lib/prayer-data";
-import { format, isSameDay } from "date-fns";
+import { format } from "date-fns";
 import { bn } from "date-fns/locale";
 
 export default function CalendarPage() {
@@ -22,24 +23,25 @@ export default function CalendarPage() {
     setCalendarDays(days);
   }, [selectedCity]);
 
-  // Set current day for auto-scroll
+  // Set current day using the unified getTodayPrayerTimes logic
   useEffect(() => {
-    if (calendarDays.length > 0) {
-      const today = new Date();
+    if (calendarDays.length > 0 && selectedCity) {
+      // Use the exact same logic as the Home page to determine "today"
+      const todayPrayers = getTodayPrayerTimes(selectedCity.value);
 
-      const todayEntry = calendarDays.find((d) => isSameDay(d.date, today));
+      if (todayPrayers) {
+        setCurrentDay(todayPrayers.day);
 
-      if (todayEntry) {
-        setCurrentDay(todayEntry.day);
+        // Slight delay to ensure DOM is ready before scrolling
         setTimeout(() => {
-          const element = document.getElementById(`day-${todayEntry.day}`);
+          const element = document.getElementById(`day-${todayPrayers.day}`);
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         }, 500);
       }
     }
-  }, [calendarDays]);
+  }, [calendarDays, selectedCity]);
 
   if (calendarDays.length === 0) {
     return (
