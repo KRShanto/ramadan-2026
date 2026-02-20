@@ -147,7 +147,14 @@ export function formatTimeToBengali(time24: string): string {
   const date = set(new Date(), { hours, minutes });
 
   // Format to 12h time in Bengali locale
-  return format(date, "h:mm", { locale: bn });
+  const formattedTime = format(date, "h:mm", { locale: bn });
+
+  // Convert English digits to Bengali digits
+  const bengaliDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+  return formattedTime.replace(
+    /\d/g,
+    (match) => bengaliDigits[parseInt(match, 10)],
+  );
 }
 
 // Get today's prayer times for a specific city
