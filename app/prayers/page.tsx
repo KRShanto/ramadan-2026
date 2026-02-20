@@ -115,51 +115,6 @@ export default function PrayersPage() {
           );
         })}
 
-        {/* Special Times */}
-        <div className="mt-8 space-y-3">
-          <h2 className="text-lg font-semibold text-foreground px-2">
-            বিশেষ সময়
-          </h2>
-
-          <div className="premium-card p-4 space-y-2 bg-linear-to-br from-primary/10 to-transparent border-primary/30">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <div className="text-2xl">🌙</div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    সেহরি শেষ
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    রোজা শুরুর আগে খাওয়ার শেষ সময়
-                  </p>
-                </div>
-              </div>
-              <div className="text-lg font-mono font-bold text-primary text-right">
-                {formattedSehriEnd}
-              </div>
-            </div>
-          </div>
-
-          <div className="premium-card p-4 space-y-2 bg-linear-to-br from-accent/10 to-transparent border-accent/30">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <div className="text-2xl">🌅</div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    ইফতার সময়
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    রোজা ভাঙ্গার সময়
-                  </p>
-                </div>
-              </div>
-              <div className="text-lg font-mono font-bold text-accent text-right">
-                {formattedIftar}
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Info Section */}
         <div className="mt-8 premium-card p-5 text-center space-y-1.5">
           <p className="text-xs text-muted-foreground leading-relaxed">
