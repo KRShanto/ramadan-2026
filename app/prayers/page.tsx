@@ -94,22 +94,19 @@ export default function PrayersPage() {
               <div className="flex items-center gap-3">
                 <div className="text-3xl">{prayer.icon}</div>
                 <div>
-                  <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     {prayer.name}
                     {isNext && (
-                      <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">
+                      <span className="text-[12px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">
                         পরবর্তী
                       </span>
                     )}
                   </h2>
-                  <p className="text-xs text-muted-foreground font-medium">
-                    দৈনিক নামাজ
-                  </p>
                 </div>
               </div>
               <div className="text-right">
                 <div
-                  className={`text-xl font-mono font-bold ${isNext ? "text-primary" : "text-foreground"}`}
+                  className={`text-2xl font-mono font-bold ${isNext ? "text-primary" : "text-foreground"}`}
                 >
                   {prayer.time}
                 </div>
