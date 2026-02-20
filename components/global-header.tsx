@@ -39,7 +39,7 @@ export function GlobalHeader() {
 
         <div className="flex items-center gap-2 shrink-0">
           <Select value={selectedCity.value} onValueChange={handleCityChange}>
-            <SelectTrigger className="h-10 w-[120px] bg-card border-border rounded-lg text-base font-medium">
+            <SelectTrigger className="h-10 w-[150px] bg-card border-border rounded-lg text-base font-medium">
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="text-primary" />
                 <SelectValue placeholder="শহর" />
