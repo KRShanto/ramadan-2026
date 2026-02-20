@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Noto_Sans_Bengali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -12,15 +11,27 @@ const _bengali = Noto_Sans_Bengali({
   variable: "--font-bengali",
 });
 
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#09090b",
+};
+
 export const metadata: Metadata = {
   title: "Ramadan Calendar Bangladesh",
   description: "Ramadan prayer times and calendar for Bangladesh",
   generator: "v0.app",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Ramadan Calendar",
+  },
+  formatDetection: {
+    telephone: false,
   },
 };
 
