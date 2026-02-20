@@ -25,7 +25,7 @@ export default function Home() {
 
     const today = new Date();
     setCurrentDate(
-      today.toLocaleDateString("en-US", {
+      today.toLocaleDateString("bn-BD", {
         weekday: "long",
         month: "long",
         day: "numeric",
@@ -75,15 +75,17 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-5 py-8 space-y-6 pb-32">
+      <main className="max-w-2xl mx-auto px-5 py-8 space-y-8 pb-32">
         {/* Current Date and Day Number */}
-        <div className="text-center space-y-2">
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">
+        <div className="text-center space-y-3">
+          <p className="text-base text-muted-foreground font-medium uppercase">
             {currentDate}
           </p>
-          <div className="space-y-0.5">
-            <p className="text-3xl font-bold text-primary">দিন {dayBn}</p>
-            <p className="text-sm text-muted-foreground font-medium">রমজানের</p>
+          <div className="space-y-1">
+            <p className="text-5xl font-bold text-primary">দিন {dayBn}</p>
+            <p className="text-base text-muted-foreground font-medium">
+              রমজানের
+            </p>
           </div>
         </div>
 
@@ -106,16 +108,16 @@ export default function Home() {
         </div>
 
         {/* Info Section */}
-        <div className="premium-card p-5 text-center space-y-1.5">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            সমস্ত সময়{" "}
+        <div className="mt-8 premium-card p-6 text-center space-y-2 border-dashed">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            সব সময়{" "}
             <span className="text-foreground font-semibold">
               {selectedCity.name}, বাংলাদেশ
             </span>{" "}
-            এর জন্য
+            এর জন্য প্রযোজ্য
           </p>
-          <p className="text-xs text-muted-foreground">
-            স্থানের উপর ভিত্তি করে সময় পরিবর্তিত হতে পারে
+          <p className="text-[12px] text-muted-foreground/60 italic">
+            * স্থানের উপর ভিত্তি করে সময় সামান্য পরিবর্তিত হতে পারে
           </p>
         </div>
       </main>
