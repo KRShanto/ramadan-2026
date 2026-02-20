@@ -50,7 +50,7 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-32">
+    <div className="min-h-screen bg-background text-foreground pb-16">
       {/* Calendar Cards */}
       <main className="max-w-2xl mx-auto px-5 py-8">
         <div className="space-y-3">

@@ -76,11 +76,8 @@ export default function PrayersPage() {
     { name: "ইশা", time: formatTimeToBengali(todayPrayers.isha), icon: "🌙" },
   ];
 
-  const formattedSehriEnd = formatTimeToBengali(todayPrayers.fajr);
-  const formattedIftar = formatTimeToBengali(todayPrayers.iftarTime);
-
   return (
-    <div className="min-h-screen bg-background text-foreground pb-32">
+    <div className="min-h-[90vh] bg-background text-foreground">
       {/* Prayer Times */}
       <main className="max-w-2xl mx-auto px-5 py-8 space-y-3">
         {prayers.map((prayer, index) => {

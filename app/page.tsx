@@ -73,7 +73,7 @@ export default function Home() {
     : "";
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-20">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Main Content */}
       <main className="max-w-2xl mx-auto px-5 py-8 space-y-6 pb-32">
         {/* Current Date and Day Number */}
