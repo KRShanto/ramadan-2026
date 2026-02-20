@@ -56,8 +56,44 @@ export default function Home() {
     );
   }
 
-  // Format the day number to Bengali
-  const dayBn = new Intl.NumberFormat("bn-BD").format(todayPrayers.day);
+  // Format the day number to Bengali ordinal string (e.g., 1 -> প্রথম)
+  const ordinalDaysBn = [
+    "", // Index 0 is empty (days are 1-30)
+    "১ম",
+    "২য়",
+    "৩য়",
+    "৪র্থ",
+    "৫ম",
+    "৬ষ্ঠ",
+    "৭ম",
+    "৮ম",
+    "৯ম",
+    "১০ম",
+    "১১শ",
+    "১২শ",
+    "১৩শ",
+    "১৪শ",
+    "১৫শ",
+    "১৬শ",
+    "১৭শ",
+    "১৮শ",
+    "১৯তম",
+    "২০তম",
+    "২১তম",
+    "২২তম",
+    "২৩তম",
+    "২৪তম",
+    "২৫তম",
+    "২৬তম",
+    "২৭তম",
+    "২৮তম",
+    "২৯তম",
+    "৩০তম",
+  ];
+
+  const dayBnOrdinal =
+    ordinalDaysBn[todayPrayers.day] ||
+    new Intl.NumberFormat("bn-BD").format(todayPrayers.day);
 
   // Bengali translation map
   const prayerNamesBn: Record<string, string> = {
@@ -82,7 +118,9 @@ export default function Home() {
             {currentDate}
           </p>
           <div className="space-y-1">
-            <p className="text-5xl font-bold text-primary">দিন {dayBn}</p>
+            <p className="text-5xl font-bold text-primary">
+              {dayBnOrdinal} দিন
+            </p>
             <p className="text-base text-muted-foreground font-medium">
               রমজানের
             </p>
