@@ -58,7 +58,7 @@ export default function CalendarPage() {
             const isToday = day.day === currentDay;
 
             // Format Date
-            const dateStr = format(day.date, "d MMM", { locale: bn });
+            const dateStr = format(day.date, "d MMMM", { locale: bn });
             const weekdayBn = format(day.date, "EEEE", { locale: bn });
 
             return (
@@ -75,7 +75,7 @@ export default function CalendarPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span
-                      className={`text-lg font-bold ${
+                      className={`text-xl font-bold ${
                         isToday ? "text-primary" : "text-foreground"
                       }`}
                     >
@@ -88,7 +88,7 @@ export default function CalendarPage() {
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-muted-foreground font-medium uppercase">
+                  <span className="text-base text-muted-foreground font-medium uppercase">
                     {weekdayBn} • {dateStr}
                   </span>
                 </div>
@@ -96,18 +96,18 @@ export default function CalendarPage() {
                 {/* Prayer times */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
-                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1">
+                    <p className="text-[13px] text-muted-foreground font-semibold mb-1">
                       সেহরি শেষ
                     </p>
-                    <p className="text-lg font-mono font-bold text-primary">
+                    <p className="text-xl font-mono font-bold text-primary">
                       {formatTimeToBengali(day.fajr)}
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-3.5 border border-border/50">
-                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1">
+                    <p className="text-[13px] text-muted-foreground font-semibold mb-1">
                       ইফতার
                     </p>
-                    <p className="text-lg font-mono font-bold text-accent">
+                    <p className="text-xl font-mono font-bold text-accent">
                       {formatTimeToBengali(day.iftarTime)}
                     </p>
                   </div>
