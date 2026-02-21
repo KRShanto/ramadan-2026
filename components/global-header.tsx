@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { MapPin } from "lucide-react";
 import {
   Select,
@@ -57,7 +56,6 @@ export function GlobalHeader() {
               ))}
             </SelectContent>
           </Select>
-          <ThemeSwitcher />
         </div>
       </div>
     </header>
